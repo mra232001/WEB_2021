@@ -1,13 +1,11 @@
 package com.example.web.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     int id;
     String username;
     String password;
