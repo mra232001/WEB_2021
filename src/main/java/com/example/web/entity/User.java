@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     int id;
     String username;
     String password;
@@ -13,6 +13,9 @@ public class User {
     String middlename;
     String lastname;
     String email;
+
+    @OneToMany(mappedBy = "user")
+    Comment comment;
 
     public User(int id, String username, String password, String firstname, String middlename, String lastname, String email, String avatar) {
         this.id = id;

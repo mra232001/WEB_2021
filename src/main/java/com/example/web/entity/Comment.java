@@ -6,10 +6,22 @@ import javax.persistence.*;
 @Table
 public class Comment {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    int comment_id;
-    int user_id;
-    String comment_text;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int comment_id;
+    private int user_id;
+    private String comment_text;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Comment(int comment_id, int user_id, String comment_text) {
         this.comment_id = comment_id;
