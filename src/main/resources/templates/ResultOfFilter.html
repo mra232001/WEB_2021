@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="../../make-color/css/uikit.min.css" />
+    <script src="../../make-color/js/uikit.min.js"></script>
+    <script src="../../make-color/js/uikit-icons.min.js"></script>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <style>
+        #bd{
+            min-height: 100vh;
+        }
+        #header{
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .text-dark{
+            color: #999 !important
+        }
+        .text-dark:hover{
+            color: #666 !important
+        }
+        .active-text-dark{
+            color: #333 !important
+        }
+        .logo-text-dark{
+            color: #666 !important
+        }
+        body {
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="bd" class="uk-flex uk-flex-column uk-child-width-1-1">
+    <div id="header" uk-sticky="top: 100; animation: uk-animation-slide-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-left uk-margin-large-left">
+
+                <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+
+                <div class="uk-margin-large-left uk-margin-large-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="/product/">Profiles</a></li>
+                        <li><a href="/us/">List exercises</a></li>
+                        <li><a href="/notification">Notifications </a></li>
+                    </ul>
+                </div>
+
+                <div class="uk-margin">
+                    <form class="uk-search uk-search-default">
+                        <a href="" uk-search-icon></a>
+                        <input class="uk-search-input" type="search" placeholder="Search">
+                    </form>
+                </div>
+
+                <div class="uk-margin-small-left uk-grid-small uk-child-width-auto uk-grid ">
+                    <label><input class="uk-radio" type="radio" name="radio2" checked>Person</label>
+                    <label><input class="uk-radio" type="radio" name="radio2"> Routine</label>
+                </div>
+
+            </div>
+
+            <div class="uk-navbar-right uk-margin-large-right">
+                <div>
+                    <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove" href="/login/">
+                        <button class="uk-button uk-button-primary">Log out</button>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <div class="uk-container uk-container-large uk-margin-top">
+        <table class="uk-table uk-table-divider">
+            <caption>Result of people</caption>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nickname</th>
+                <th>Fullname</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>6</td>
+                <td>UserTemp5</td>
+                <td>Н. И. Шейко</td>
+
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>UserTemp2</td>
+                <td>В. П. Берков</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="uk-margin-auto-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-center">
+                <div class="uk-navbar-center-left">
+                    <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+                </div>
+                <div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
+                    <div class="uk-margin-small-right">
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left uk-margin-small-right">
+                        <a href="https://github.com/Maybenex1ime/Web_Project_Autumn_2021" class="uk-icon-button" uk-icon="icon: github; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left">
+                        <a href="https://www.facebook.com/profile.php?id=100011399705502" class="uk-icon-button" uk-icon="icon: facebook; ratio: 1.5"></a>
+                    </div>
+                </div>
+                <div class="uk-navbar-center-right">
+                    <div>
+                        <ul class="uk-navbar-nav">
+                            <li><a href="#" class="uk-padding-remove">All right reserved.</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+</body>
+</html>

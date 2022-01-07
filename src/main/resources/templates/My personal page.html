@@ -43,7 +43,8 @@
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
                         <li><a href="/product/">Profiles</a></li>
-                        <li><a href="/us/">My routines</a></li>
+                        <li><a href="/us/">List exercises</a></li>
+                        <li><a href="/notification">Notifications </a></li>
                     </ul>
                 </div>
 
@@ -52,6 +53,11 @@
                         <a href="" uk-search-icon></a>
                         <input class="uk-search-input" type="search" placeholder="Search">
                     </form>
+                </div>
+
+                <div class="uk-margin-small-left uk-grid-small uk-child-width-auto uk-grid ">
+                    <label><input class="uk-radio" type="radio" name="radio2" checked>Person</label>
+                    <label><input class="uk-radio" type="radio" name="radio2"> Routine</label>
                 </div>
 
             </div>
@@ -66,7 +72,35 @@
             </div>
         </nav>
     </div>
-    <div class="uk-child-width-1-2@s uk-grid-match uk-margin-large-left uk-margin-auto uk-margin-auto-top" uk-grid>
+
+    <form class = "uk-margin-large uk-margin-large-left" >
+        <fieldset class="uk-fieldset">
+
+            <div uk-alert>Nickname : Userroot</div>
+
+            <div uk-alert>Workouts : 2</div>
+
+            <div uk-alert>Followers : 5</div>
+
+            <div uk-alert>Following : 8</div>
+
+            <div uk-alert>Full name : Иван Иванович</div>
+
+            <div uk-alert>Sex : Male</div>
+
+            <div uk-alert>Age : 20</div>
+
+            <div uk-alert>Bio : Люблю розовый, ненавижу ложь</div>
+
+            <div class="uk-button">
+                <button class = "uk-button uk-button-primary">Edit profile </button>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <div id="products-grid" class="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s uk-child-width-1-1 uk-margin-small uk-margin-small-left" uk-grid>
+
         <div>
             <div class="uk-card uk-card-hover uk-card-default">
                 <a class="uk-link-reset" href="/description/adidas-originals/">
@@ -77,24 +111,12 @@
                             </div>
                             <div class="uk-text-small uk-text-muted">
                                 <dd>Time : 1h18min</dd>
-                                <dd>Volumn: 3,461kg </dd>
+                                <dd>Volumn: 3,461kg</dd>
                             </div>
                         </dl>
                     </div>
-
-                    <div class="uk-card-body">
-                        <div>
-                            <dl class="uk-description-list">
-                                <div class="uk-text-bold uk-text-large uk-text-muted">
-                                    <dd>3 sets of Pull Ups</dd>
-                                    <dd>4 sets of Push Ups</dd>
-                                    <dd>5 sets of Chin Ups</dd>
-                                    <dd>5 sets of Chin Ups</dd>
-                                    <dd>5 sets of Chin Ups</dd>
-                                    <dd>5 sets of Chin Ups</dd>
-                                </div>
-                            </dl>
-                        </div>
+                    <div class="uk-card-media-top">
+                        <img src="Images/img.png">
                     </div>
 
                     <div class = uk-margin-small-left>
@@ -105,7 +127,39 @@
                     <div class="uk-margin-small-left">
                         <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
                         <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="uk-card uk-card-hover uk-card-default">
+                <a class="uk-link-reset" href="/description/adidas-originals-2/">
+                    <div class="uk-padding-small">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dt>Pull Up Hell</dt>
+                            </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd>Time : 1h18min</dd>
+                                <dd>Volumn: 3,461kg</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-card-media-top">
+                        <img src="Images/img_3.png" >
+                    </div>
+
+                    <div class = uk-margin-small-left>
+                        <p> 78 people like this post</p>
+                        <p> 0 comment</p>
+                    </div>
+
+                    <div class="uk-margin-small-left">
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
                     </div>
 
                 </a>
@@ -114,42 +168,16 @@
 
         <div>
             <div class="uk-card uk-card-hover uk-card-default">
-                <a class="uk-link-reset" href="/description/adidas-originals/">
+                <a class="uk-link-reset" href="/description/adidas-originals-2/">
                     <div class="uk-padding-small">
                         <dl class="uk-description-list">
                             <div class="uk-text-bold uk-text-large uk-text-muted">
-                                <dt>Push day</dt>
-                            </div>
-                            <div class="uk-text-small uk-text-muted">
-                                <dd>Time : 1h18min</dd>
-                                <dd>Volumn: 3,461kg </dd>
+                                <dt>Create a new routines</dt>
                             </div>
                         </dl>
                     </div>
                     <div class="uk-card-media-top">
-                        <img src= "../img.jpg">
-                    </div>
-                    <div class="uk-card-body">
-                        <div>
-                            <dl class="uk-description-list">
-                                <div class="uk-text-bold uk-text-large uk-text-muted">
-                                    <dd>3 sets of Pull Ups</dd>
-                                    <dd>4 sets of Push Ups</dd>
-                                    <dd>5 sets of Chin Ups</dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </div>
-
-                    <div class = uk-margin-small-left>
-                        <p> 25 people like this post</p>
-                        <p> 0 comment</p>
-                    </div>
-
-                    <div class="uk-margin-small-left">
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                        <img src="Images/img_8.png" >
                     </div>
 
                 </a>

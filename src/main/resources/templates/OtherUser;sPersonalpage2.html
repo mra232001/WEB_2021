@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="../../make-color/css/uikit.min.css" />
+    <script src="../../make-color/js/uikit.min.js"></script>
+    <script src="../../make-color/js/uikit-icons.min.js"></script>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <style>
+        #bd{
+            min-height: 100vh;
+        }
+        #header{
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .text-dark{
+            color: #999 !important
+        }
+        .text-dark:hover{
+            color: #666 !important
+        }
+        .active-text-dark{
+            color: #333 !important
+        }
+        .logo-text-dark{
+            color: #666 !important
+        }
+        body {
+            background-color: rgba(170,170,170,0.5);
+        }
+
+    </style>
+</head>
+<body>
+<div id="bd" class="uk-flex uk-flex-column uk-child-width-1-1">
+    <div id="header" uk-sticky="top: 100; animation: uk-animation-slide-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-left uk-margin-large-left">
+
+                <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+
+                <div class="uk-margin-large-left uk-margin-large-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="/product/">Profiles</a></li>
+                        <li><a href="/us/">List exercises</a></li>
+                        <li><a href="/notification">Notifications </a></li>
+                    </ul>
+                </div>
+
+                <div class="uk-margin">
+                    <form class="uk-search uk-search-default">
+                        <a href="" uk-search-icon></a>
+                        <input class="uk-search-input" type="search" placeholder="Search">
+                    </form>
+                </div>
+
+                <div class="uk-margin-small-left uk-grid-small uk-child-width-auto uk-grid ">
+                    <label><input class="uk-radio" type="radio" name="radio2" checked>Person</label>
+                    <label><input class="uk-radio" type="radio" name="radio2"> Routine</label>
+                </div>
+
+            </div>
+
+            <div class="uk-navbar-right uk-margin-large-right">
+                <div>
+                    <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove" href="/login/">
+                        <button class="uk-button uk-button-primary">Log out</button>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <form class = "uk-margin-large uk-margin-large-left" >
+        <fieldset class="uk-fieldset">
+
+            <div uk-alert>Nickname : UserTemp2</div>
+
+            <div uk-alert>Workouts : 2</div>
+
+            <div uk-alert>Followers : 3</div>
+
+            <div uk-alert>Following : 1</div>
+
+            <div uk-alert>Full name : В. П. Берков</div>
+
+            <div uk-alert>Sex : Male</div>
+
+            <div uk-alert>Age : 21</div>
+
+            <div uk-alert>Bio : Ничего особенного</div>
+
+            <div class="uk-button">
+                <button class = "uk-button uk-button-primary">Follow </button>
+            </div>
+
+            <div class="uk-button">
+                <button class = "uk-button uk-button-primary">Ban User </button>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <div id="products-grid" class="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s uk-child-width-1-1 uk-margin-small uk-margin-small-left" uk-grid>
+
+        <div>
+            <div class="uk-card uk-card-hover uk-card-default">
+                <a class="uk-link-reset" href="/description/adidas-originals/">
+                    <div class="uk-padding-small">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dt>Push day</dt>
+                            </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd>Time : 1h18min</dd>
+                                <dd>Volumn: 3,461kg</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-card-media-top">
+                        <img src="Images/img.png">
+                    </div>
+
+                    <div class = uk-margin-small-left>
+                        <p> 25 people like this post</p>
+                        <p> 0 comment</p>
+                    </div>
+
+                    <div class="uk-margin-small-left">
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="uk-card uk-card-hover uk-card-default">
+                <a class="uk-link-reset" href="/description/adidas-originals-2/">
+                    <div class="uk-padding-small">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dt>Pull Up Hell</dt>
+                            </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd>Time : 1h18min</dd>
+                                <dd>Volumn: 3,461kg</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-card-media-top">
+                        <img src="Images/img_3.png" >
+                    </div>
+
+                    <div class = uk-margin-small-left>
+                        <p> 78 people like this post</p>
+                        <p> 0 comment</p>
+                    </div>
+
+                    <div class="uk-margin-small-left">
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="uk-margin-auto-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-center">
+                <div class="uk-navbar-center-left">
+                    <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+                </div>
+                <div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
+                    <div class="uk-margin-small-right">
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left uk-margin-small-right">
+                        <a href="https://github.com/Maybenex1ime/Web_Project_Autumn_2021" class="uk-icon-button" uk-icon="icon: github; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left">
+                        <a href="https://www.facebook.com/profile.php?id=100011399705502" class="uk-icon-button" uk-icon="icon: facebook; ratio: 1.5"></a>
+                    </div>
+                </div>
+                <div class="uk-navbar-center-right">
+                    <div>
+                        <ul class="uk-navbar-nav">
+                            <li><a href="#" class="uk-padding-remove">All right reserved.</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="../../make-color/css/uikit.min.css" />
+    <link rel="stylesheet" href="../../jsp/Style.css" />
+    <script src="../../make-color/js/uikit.min.js"></script>
+    <script src="../../make-color/js/uikit-icons.min.js"></script>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <style>
+        #bd{
+            min-height: 100vh;
+        }
+        #header{
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .text-dark{
+            color: #999 !important
+        }
+        .text-dark:hover{
+            color: #666 !important
+        }
+        .active-text-dark{
+            color: #333 !important
+        }
+        .logo-text-dark{
+            color: #666 !important
+        }
+        body {
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="bd" class="uk-flex uk-flex-column uk-child-width-1-1">
+    <div id="header" uk-sticky="top: 100; animation: uk-animation-slide-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-left uk-margin-large-left">
+
+                <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+
+                <div class="uk-margin-large-left uk-margin-large-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="/product/">Profiles</a></li>
+                        <li><a href="/us/">List exercises</a></li>
+                        <li><a href="/notification">Notifications </a></li>
+                    </ul>
+                </div>
+
+                <div class="uk-margin">
+                    <form class="uk-search uk-search-default">
+                        <a href="" uk-search-icon></a>
+                        <input class="uk-search-input" type="search" placeholder="Search">
+                    </form>
+                </div>
+
+                <div class="uk-margin-small-left uk-grid-small uk-child-width-auto uk-grid ">
+                    <label><input class="uk-radio" type="radio" name="radio2" checked> Person</label>
+                    <label><input class="uk-radio" type="radio" name="radio2"> Routine</label>
+                </div>
+
+            </div>
+
+            <div class="uk-navbar-right uk-margin-large-right">
+                <div>
+                    <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove" href="/login/">
+                        <button class="uk-button uk-button-primary">Log out</button>
+                    </a>
+                </div>
+            </div>
+
+
+        </nav>
+    </div>
+
+    <div class="uk-container uk-margin-large">
+
+        <div>
+            <div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
+                <div class="uk-card-media-left uk-width-1-2@m uk-cover-container">
+                    <div class="uk-position-relative" tabindex="-1"
+                         uk-slideshow=" min-height: 600; animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
+                        <li>
+                            <img src = "Images/img_5.png">
+                        </li>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-width-1-2@m uk-padding">
+                    <div class="uk-flex">
+                        <div class="uk-margin-auto-right uk-width-3-5">
+                            <dl class="uk-description-list">
+                                <div class="uk-text-bold uk-text-large uk-text-muted">
+                                    <dt>Home workout</dt>
+                                </div>
+                                <div class="uk-text-small uk-text-muted">
+                                    <dd>Time: 1h18min</dd>
+                                    <dd>Volumn: 3,461kg</dd>
+                                    <dd><a href ="/userxx/">By UserTemp1</a></dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="uk-margin-small-bottom uk-margin-medium-top">
+                        <p class="uk-text-muted">A quick workout at home</p>
+                    </div>
+
+                    <table class="uk-table uk-table-divider">
+                        <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Set</th>
+                            <th>Rep</th>
+                            <th>Volumn</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a href="/processForm">Push up</a></td>
+                            <td>4</td>
+                            <td>8</td>
+                            <td>None</td>
+                        </tr>
+                        <tr>
+                            <td><a href="/processForm">Squat</a></td>
+                            <td>4</td>
+                            <td>8</td>
+                            <td>None</td>
+                        </tr>
+                        <tr>
+                            <td><a href="/processForm">Pull Up</a></td>
+                            <td>3</td>
+                            <td>10</td>
+                            <td>None</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="container uk-grid-small uk-child-width-auto uk-margin">
+                        <div class="watch">
+                            <div class="hourDiv">
+                                <h3 class="hour">01 </h3>
+                            </div>
+                            <div class="minuteDiv">
+                                <h3 class="minute">30</h3>
+                            </div>
+                            <div class="secondDiv">
+                                <h3 class="second">01</h3>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="start button uk-button-primary">Start</button>
+                            <button class="pause button uk-button-default">Pause</button>
+                            <button class="stop button uk-button-danger">Reset</button>
+                            <button class="finish button uk-button-danger">Finish</button>
+                        </div>
+                    </div>
+                    <script src="app.js"></script>
+                    <script>
+                        let bodyWidth = screen.width;
+                        if(bodyWidth === 250) {
+                            alert("Web App Not Compatiable Choose Device Above 300 Width Otherwise UI Design Will be Messy.");
+                        }
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="uk-margin-auto-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-center">
+                <div class="uk-navbar-center-left">
+                    <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+                </div>
+                <div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
+                    <div class="uk-margin-small-right">
+                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left uk-margin-small-right">
+                        <a href="https://github.com/Maybenex1ime/Web_Project_Autumn_2021" class="uk-icon-button" uk-icon="icon: github; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left">
+                        <a href="https://www.facebook.com/profile.php?id=100011399705502" class="uk-icon-button" uk-icon="icon: facebook; ratio: 1.5"></a>
+                    </div>
+                </div>
+                <div class="uk-navbar-center-right">
+                    <div>
+                        <ul class="uk-navbar-nav">
+                            <li><a href="#" class="uk-padding-remove">All right reserved.</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+</body>
+</html>
