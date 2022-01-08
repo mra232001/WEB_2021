@@ -9,6 +9,7 @@ public class User {
     int id;
     String username;
     String password;
+    private String password_confirm;
     String firstname;
     String middlename;
     String lastname;
@@ -94,6 +95,12 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getPassword_confirm(){return password_confirm;}
+
+    public void setPassword_confirm(String password_confirm){
+        this.password_confirm = password_confirm;
     }
 
     String avatar;

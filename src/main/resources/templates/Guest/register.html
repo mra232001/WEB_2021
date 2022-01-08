@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" xmlns: th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="../../make-color/css/uikit.min.css" />
-    <script src="../../make-color/js/uikit.min.js"></script>
-    <script src="../../make-color/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="../../static/make-color/css/uikit.min.css" />
+    <script src="../../static/make-color/js/uikit.min.js"></script>
+    <script src="../../static/make-color/js/uikit-icons.min.js"></script>
     <title>Home</title>
     <meta charset="utf-8">
     <style>
@@ -28,7 +28,7 @@
         }
         body {
             background-color: rgba(170,170,170,0.5);
-            background-image: url("../../Images/background_image.jpg");
+            background-image: url("../../static/Images/background_image.jpg");
         }
 
         .login {
@@ -104,6 +104,36 @@
             margin-left : -5px;
         }
 
+        #Register {
+            font-family: "Asap", sans-serif;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            border: 0;
+            padding: 10px 0;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: #f45b69;
+            width: 120px;
+            margin-left : 150px;
+        }
+
+        #Register {
+            font-family: "Asap", sans-serif;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            border: 0;
+            padding: 10px 0;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: #f45b69;
+            width: 120px;
+            margin-left : 100px;
+        }
+
     </style>
 </head>
 <body>
@@ -124,12 +154,13 @@
         </nav>
     </div>
 
-    <form action="/login" method = "post" class = "login">
-        <input type = "text" name = "username" placeholder="User">
-        <input type = "password" name = "password" placeholder="Password">
-        <button>Login</button>
+    <form action="#" th:action="@{/user/Register}" th:object="${user}" method = "post" class = "login">
+        <input type = "text" th:field="*{Username}" placeholder="Username">
+        <input type = "password" th:field="*{Password}" placeholder="Password">
+        <input type = "password" th:field="*{Password_Confirm}" placeholder="Password confirm">
+        <button id = "Register" type = submit>Register</button>
         <br>
-        <a href = "/register" id = "register-line">Don't have an account ? Click here!</a>
+        <a th:href = "@{/login}">Already have an account? Sign in here!</a>
     </form>
 
     <div class="uk-margin-auto-top">

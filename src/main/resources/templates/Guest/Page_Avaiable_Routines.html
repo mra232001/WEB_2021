@@ -2,9 +2,9 @@
 
 <html lang="en" xmlns: th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="../static/make-color/css/uikit.min.css" />
-    <script src="../static/make-color/js/uikit.min.js"></script>
-    <script src="../static/make-color/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="../../static/make-color/css/uikit.min.css" />
+    <script src="../../static/make-color/js/uikit.min.js"></script>
+    <script src="../../static/make-color/js/uikit-icons.min.js"></script>
     <title>Home</title>
     <meta charset="utf-8">
     <style>
@@ -28,6 +28,7 @@
         }
         body {
             background-color: rgba(170,170,170,0.5);
+
         }
 
     </style>
@@ -42,62 +43,14 @@
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
-                        <li><a href="/product/">Profiles</a></li>
-                        <li><a href="/us/">List exercises</a></li>
-                        <li><a href="/notification">Notifications </a></li>
+                        <li><a href="/product/">Avaiable routines</a></li>
+                        <li><a href="/us/">About us</a></li>
                     </ul>
                 </div>
-
-                <div class="uk-margin">
-                    <form class="uk-search uk-search-default">
-                        <a href="" uk-search-icon></a>
-                        <input class="uk-search-input" type="search" placeholder="Search">
-                    </form>
-                </div>
-
-                <div class="uk-margin-small-left uk-grid-small uk-child-width-auto uk-grid ">
-                    <label><input class="uk-radio" type="radio" name="radio2" checked>Person</label>
-                    <label><input class="uk-radio" type="radio" name="radio2"> Routine</label>
-                </div>
-
-            </div>
-
-            <div class="uk-navbar-right uk-margin-large-right">
-                <div>
-                    <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove" href="/login/">
-                        <button class="uk-button uk-button-primary">Log out</button>
-                    </a>
-                </div>
-
             </div>
         </nav>
     </div>
 
-    <form class = "uk-margin-large uk-margin-large-left" >
-        <fieldset class="uk-fieldset">
-
-            <div uk-alert>Nickname : Userroot</div>
-
-            <div uk-alert>Workouts : 2</div>
-
-            <div uk-alert>Followers : 5</div>
-
-            <div uk-alert>Following : 8</div>
-
-            <div uk-alert>Full name : Иван Иванович</div>
-
-            <div uk-alert>Sex : Male</div>
-
-            <div uk-alert>Age : 20</div>
-
-            <div uk-alert>Bio : Люблю розовый, ненавижу ложь</div>
-
-            <div class="uk-button">
-                <button class = "uk-button uk-button-primary">Edit profile </button>
-            </div>
-
-        </fieldset>
-    </form>
 
     <div id="products-grid" class="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s uk-child-width-1-1 uk-margin-small uk-margin-small-left" uk-grid>
 
@@ -107,11 +60,11 @@
                     <div class="uk-padding-small">
                         <dl class="uk-description-list">
                             <div class="uk-text-bold uk-text-large uk-text-muted">
-                                <dt>Push day</dt>
+                                <dt>Home Transformation</dt>
                             </div>
                             <div class="uk-text-small uk-text-muted">
-                                <dd>Time : 1h18min</dd>
-                                <dd>Volumn: 3,461kg</dd>
+                                <dd>Focus Muscle: Full body</dd>
+                                <dd>Equipment : No</dd>
                             </div>
                         </dl>
                     </div>
@@ -119,16 +72,6 @@
                         <img src="Images/img.png">
                     </div>
 
-                    <div class = uk-margin-small-left>
-                        <p> 25 people like this post</p>
-                        <p> 0 comment</p>
-                    </div>
-
-                    <div class="uk-margin-small-left">
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
-                    </div>
                 </a>
             </div>
         </div>
@@ -142,8 +85,8 @@
                                 <dt>Pull Up Hell</dt>
                             </div>
                             <div class="uk-text-small uk-text-muted">
-                                <dd>Time : 1h18min</dd>
-                                <dd>Volumn: 3,461kg</dd>
+                                <dd>Focus Muscle: Back</dd>
+                                <dd>Equipment : Pull up bar</dd>
                             </div>
                         </dl>
                     </div>
@@ -151,15 +94,49 @@
                         <img src="Images/img_3.png" >
                     </div>
 
-                    <div class = uk-margin-small-left>
-                        <p> 78 people like this post</p>
-                        <p> 0 comment</p>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="uk-card uk-card-hover uk-card-default">
+                <a class="uk-link-reset" href="/description/assid/">
+                    <div class="uk-padding-small">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dt>Push up Hell</dt>
+                            </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd>Focus Muscle: Chest</dd>
+                                <dd>Equipment : No</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-card-media-top">
+                        <img src="Images/img_2.png">
                     </div>
 
-                    <div class="uk-margin-small-left">
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
+
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="uk-card uk-card-hover uk-card-default">
+                <a class="uk-link-reset" href="/description/adidas-originals/">
+                    <div class="uk-padding-small">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dt>Home Transformation 2</dt>
+                            </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd>Focus Muscle: Full body</dd>
+                                <dd>Equipment : No</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-card-media-top">
+                        <img src="Images/img_4.png">
                     </div>
 
                 </a>
@@ -172,12 +149,38 @@
                     <div class="uk-padding-small">
                         <dl class="uk-description-list">
                             <div class="uk-text-bold uk-text-large uk-text-muted">
-                                <dt>Create a new routines</dt>
+                                <dt>Upper Body Pump</dt>
+                            </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd>Focus Muscle: Upper body</dd>
+                                <dd>Equipment : No</dd>
                             </div>
                         </dl>
                     </div>
                     <div class="uk-card-media-top">
-                        <img src="Images/img_8.png" >
+                        <img src="Images/img_5.png" >
+                    </div>
+
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="uk-card uk-card-hover uk-card-default">
+                <a class="uk-link-reset" href="/description/assid/">
+                    <div class="uk-padding-small">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dt>Bigger Arms</dt>
+                            </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd>Focus Muscle: Arms</dd>
+                                <dd>Equipment : Barbells</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-card-media-top">
+                        <img src="Images/img_6.png">
                     </div>
 
                 </a>
@@ -185,6 +188,7 @@
         </div>
 
     </div>
+
 
     <div class="uk-margin-auto-top">
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
