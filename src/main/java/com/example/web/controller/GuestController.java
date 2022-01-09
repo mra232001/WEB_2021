@@ -12,11 +12,11 @@ public class GuestController {
     }
 
     @GetMapping("/login")
-    public String loginFrom(){
+    public String login(){
         return "Guest/login";
     }
 
-    @GetMapping("/avaiable-routine")
+    @GetMapping("/avaiable-routines")
     public String AvaiableRoutine(){
         return "Guest/Page_Avaiable_Routines";
     }

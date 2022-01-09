@@ -2,9 +2,9 @@
 
 <html lang="en" xmlns: th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="../../static/make-color/css/uikit.min.css" />
-    <script src="../../static/make-color/js/uikit.min.js"></script>
-    <script src="../../static/make-color/js/uikit-icons.min.js"></script>
+    <link th:href="@{/make-color/css/uikit.min.css}" rel="stylesheet" />
+    <script th:src="@{/make-color/js/uikit.min.js}"></script>
+    <script th:src="@{/make-color/js/uikit-icons.min.js}"></script>
     <title>Home</title>
     <meta charset="utf-8">
     <style>
@@ -16,7 +16,7 @@
         }
         body {
             background-color: rgba(170,170,170,0.5);
-            background-image: url("../../static/Images/background2.jpg");
+            background-image: url("../Images/background2.jpg");
         }
 
     </style>
@@ -27,7 +27,7 @@
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-left uk-margin-large-left">
 
-                <a th:href="@{/guest}" class="uk-navbar-item uk-logo">StrongFit</a>
+                <a th:href="@{/}" class="uk-navbar-item uk-logo">StrongFit</a>
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
@@ -44,8 +44,8 @@
         <p class="uk-text-bold uk-text-large uk-margin-large-left" style=" color: white">StrongFit is a free web service allows </p>
         <p class="uk-text-bold uk-text-large" style=" color: white">people to share their workout routines together. </p>
         <p class="uk-button uk-margin-small-right uk-margin-large-left">
-            <button class="uk-button uk-button-primary uk-button-small uk-margin-large-left" th:href="@{/register}">Join us</button>
-            <button class="uk-button uk-button-primary uk-button-small uk-margin-large-left" th:href="@{/login}">Login</button>
+            <a th:href = "@{/user/register}" class="uk-button uk-button-primary uk-button-small uk-margin-large-left">Join us</a>
+            <a th:href = "@{/usr/login}" class="uk-button uk-button-primary uk-button-small uk-margin-large-left">  Login</a>
         </p>
     </div>
 
@@ -54,7 +54,7 @@
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-center">
                 <div class="uk-navbar-center-left">
-                    <a th:href="@{/guest}" class="uk-navbar-item uk-logo">StrongFit</a>
+                    <a th:href="@{/}" class="uk-navbar-item uk-logo">StrongFit</a>
                 </div>
                 <div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
                     <div class="uk-margin-small-right">

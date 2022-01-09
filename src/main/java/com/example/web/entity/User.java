@@ -11,6 +11,7 @@ public class User {
     Long id;
     String username;
     String password;
+    String password_confirm;
     String firstname;
     String middlename;
     String lastname;
@@ -154,6 +155,14 @@ public class User {
 
     public void setGroup(Set<Group> group) {
         this.group = group;
+    }
+
+    public String getPassword_confirm(){
+        return password_confirm;
+    }
+
+    public void setPassword_confirm(String password_confirm){
+        this.password_confirm = password_confirm;
     }
 
     public User() {

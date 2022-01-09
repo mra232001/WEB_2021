@@ -2,9 +2,9 @@
 
 <html lang="en" xmlns: th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="../../static/make-color/css/uikit.min.css" />
-    <script src="../../static/make-color/js/uikit.min.js"></script>
-    <script src="../../static/make-color/js/uikit-icons.min.js"></script>
+    <link th:href="@{/make-color/css/uikit.min.css}" rel="stylesheet" />
+    <script th:src="@{/make-color/js/uikit.min.js}"></script>
+    <script th:src="@{/make-color/js/uikit-icons.min.js}"></script>
     <title>Home</title>
     <meta charset="utf-8">
     <style>
@@ -28,7 +28,7 @@
         }
         body {
             background-color: rgba(170,170,170,0.5);
-            background-image: url("../../static/Images/background_image.jpg");
+            background-image: url("../Images/background_image.jpg");
         }
 
         .login {
@@ -142,32 +142,32 @@
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-left uk-margin-large-left">
 
-                <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+                <a th:href="@{/}" class="uk-navbar-item uk-logo">StrongFit</a>
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
-                        <li><a href="/product/">Avaiable routines</a></li>
-                        <li><a href="/us/">About us</a></li>
+                        <li><a th:href="@{/avaiable-routines}">Avaiable routines</a></li>
+                        <li><a th:href="@{/us}">About us</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 
-    <form action="#" th:action="@{/user/Register}" th:object="${user}" method = "post" class = "login">
-        <input type = "text" th:field="*{Username}" placeholder="Username">
-        <input type = "password" th:field="*{Password}" placeholder="Password">
-        <input type = "password" th:field="*{Password_Confirm}" placeholder="Password confirm">
+    <form action="#" th:action="@{/user/save}" th:object="${user}" method = "post" class = "login">
+        <input type = "text" th:field="*{username}" placeholder="Username">
+        <input type = "password" th:field="*{password}" placeholder="Password">
+        <input type = "password" th:field="*{password_Confirm}" placeholder="Password confirm">
         <button id = "Register" type = submit>Register</button>
         <br>
-        <a th:href = "@{/login}">Already have an account? Sign in here!</a>
+        <a th:href = "@{/user/login}">Already have an account? Sign in here!</a>
     </form>
 
     <div class="uk-margin-auto-top">
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-center">
                 <div class="uk-navbar-center-left">
-                    <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+                    <a th:href="@{/}" class="uk-navbar-item uk-logo">StrongFit</a>
                 </div>
                 <div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
                     <div class="uk-margin-small-right">
@@ -190,6 +190,7 @@
             </div>
         </nav>
     </div>
+
 </div>
 
 </body>
