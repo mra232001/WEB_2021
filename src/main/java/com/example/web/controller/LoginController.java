@@ -23,6 +23,4 @@ public class LoginController {
         if(theUser.getPassword().equals( theUser.getPassword_confirm())) loginService.Register(theUser);
         return "redirect:/guest/login";
     }
-
-
 }

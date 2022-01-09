@@ -4,29 +4,49 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Entity
 @Table
 public class Group {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    int id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    Long id;
     String name;
-    @JsonIgnore
-    @OneToMany
-    ArrayList <User> users = new ArrayList<>();
 
-    public Group(int id, String name, ArrayList<User> users) {
+    public Group(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.users = users;
     }
 
-    public int getId() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Group group = (Group) o;
+
+        return id != null ? id.equals(group.id) : group.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    /// group - user
+    @ManyToMany(mappedBy = "group")
+    Set <User> user;
+
+    public Group() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -38,15 +58,11 @@ public class Group {
         this.name = name;
     }
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public Set<User> getUser() {
+        return user;
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
-    }
-
-    public Group() {
-
+    public void setUser(Set<User> user) {
+        this.user = user;
     }
 }

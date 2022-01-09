@@ -1,48 +1,67 @@
 package com.example.web.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    int id;
+    Long id;
     String username;
     String password;
-    private String password_confirm;
     String firstname;
     String middlename;
     String lastname;
     String email;
+    String avatar;
 
+    /// user - comment
     @OneToMany(mappedBy = "user")
-    Comment comment;
+    Set<Comment> commentSet = new HashSet<>();
 
-    public User(int id, String username, String password, String firstname, String middlename, String lastname, String email, String avatar) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.email = email;
-        this.avatar = avatar;
-    }
+    /// user - like
+    @OneToMany(mappedBy = "user")
+    Set <Like> like = new HashSet<>();
 
-    public User() {
+    /// user - post;
+    @OneToMany(mappedBy = "user")
+    Set <Post> post = new HashSet<>();
 
-    }
+    /// user - share
+    @OneToMany(mappedBy = "user")
+    Set <Share> share = new HashSet<>();
 
-    public int getId() {
+    // user - group
+    @ManyToMany
+    @JoinTable(name = "user_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    Set <Group> group = new HashSet<>();
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return id != null ? id.equals(user.id) : user.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     public void setUsername(String username) {
@@ -97,11 +116,58 @@ public class User {
         this.avatar = avatar;
     }
 
-    public String getPassword_confirm(){return password_confirm;}
-
-    public void setPassword_confirm(String password_confirm){
-        this.password_confirm = password_confirm;
+    public Set<Comment> getCommentSet() {
+        return commentSet;
     }
 
-    String avatar;
+    public void setCommentSet(Set<Comment> commentSet) {
+        this.commentSet = commentSet;
+    }
+
+    public Set<Like> getLike() {
+        return like;
+    }
+
+    public void setLike(Set<Like> like) {
+        this.like = like;
+    }
+
+    public Set<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(Set<Post> post) {
+        this.post = post;
+    }
+
+    public Set<Share> getShare() {
+        return share;
+    }
+
+    public void setShare(Set<Share> share) {
+        this.share = share;
+    }
+
+    public Set<Group> getGroup() {
+        return group;
+    }
+
+    public void setGroup(Set<Group> group) {
+        this.group = group;
+    }
+
+    public User() {
+
+    }
+
+    public User(Long id, String username, String password, String firstname, String middlename, String lastname, String email, String avatar) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.email = email;
+        this.avatar = avatar;
+    }
 }

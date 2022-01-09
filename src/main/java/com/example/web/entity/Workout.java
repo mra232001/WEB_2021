@@ -1,48 +1,52 @@
 package com.example.web.entity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table
 public class Workout {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    int id_workout;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
     String name;
-    String status;
-    LocalDateTime time;
-    String comment;
-    int user_id;
-    int set;
-    int reps;
-    int weight;
-    int rest_time;
+    int number; /// this is set training
 
-    public Workout(int id_workout, String name, String status, LocalDateTime time, String comment, int user_id, int set, int reps, int weight, int rest_time) {
-        this.id_workout = id_workout;
+    public Workout(Long id, String name, int number) {
+        this.id = id;
         this.name = name;
-        this.status = status;
-        this.time = time;
-        this.comment = comment;
-        this.user_id = user_id;
-        this.set = set;
-        this.reps = reps;
-        this.weight = weight;
-        this.rest_time = rest_time;
+        this.number = number;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "post_work", joinColumns = @JoinColumn(name = "workout_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
+    Set<Post> post;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Workout workout = (Workout) o;
+
+        return id != null ? id.equals(workout.id) : workout.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     public Workout() {
 
     }
 
-    public int getId_workout() {
-        return id_workout;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_workout(int id_workout) {
-        this.id_workout = id_workout;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -53,67 +57,19 @@ public class Workout {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status;
+    public int getNumber() {
+        return number;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public Set<Post> getPost() {
+        return post;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getSet() {
-        return set;
-    }
-
-    public void setSet(int set) {
-        this.set = set;
-    }
-
-    public int getReps() {
-        return reps;
-    }
-
-    public void setReps(int reps) {
-        this.reps = reps;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getRest_time() {
-        return rest_time;
-    }
-
-    public void setRest_time(int rest_time) {
-        this.rest_time = rest_time;
+    public void setPost(Set<Post> post) {
+        this.post = post;
     }
 }
