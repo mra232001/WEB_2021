@@ -2,19 +2,16 @@ package com.example.web.controller;
 
 import com.example.web.entity.User;
 import com.example.web.service.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
 @RequestMapping("/user")
 public class LoginController {
 
-    @Autowired
     private LoginService loginService;
 
     public LoginController(LoginService loginService){
@@ -24,9 +21,7 @@ public class LoginController {
     @GetMapping("/register")
     public String register(Model model){
         User user = new User();
-
         model.addAttribute("user",user);
-
         return "Guest/register";
     }
 
@@ -39,6 +34,7 @@ public class LoginController {
 
         return "Guest/list";
     }
+
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") User theUser){
         if(theUser.getPassword().equals(theUser.getPassword_confirm())) {
