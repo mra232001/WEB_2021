@@ -29,6 +29,8 @@ public class Routine {
     @OneToMany
     List<Exercise> exerciseList;
 
+    List<Integer> listSet;
+
     public Routine() {
 
     }
