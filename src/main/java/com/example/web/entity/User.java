@@ -23,23 +23,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     Set<Comment> commentSet = new HashSet<>();
 
-    /// user - like
-    @OneToMany(mappedBy = "user")
-    Set <Like> like = new HashSet<>();
-
-    /// user - post;
-    @OneToMany(mappedBy = "user")
-    Set <Post> post = new HashSet<>();
-
-    /// user - share
-    @OneToMany(mappedBy = "user")
-    Set <Share> share = new HashSet<>();
-
-    // user - group
-    @ManyToMany
-    @JoinTable(name = "user_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-    Set <Group> group = new HashSet<>();
-
     public Long getId() {
         return id;
     }
@@ -126,43 +109,11 @@ public class User {
         this.commentSet = commentSet;
     }
 
-    public Set<Like> getLike() {
-        return like;
-    }
-
-    public void setLike(Set<Like> like) {
-        this.like = like;
-    }
-
-    public Set<Post> getPost() {
-        return post;
-    }
-
-    public void setPost(Set<Post> post) {
-        this.post = post;
-    }
-
-    public Set<Share> getShare() {
-        return share;
-    }
-
-    public void setShare(Set<Share> share) {
-        this.share = share;
-    }
-
-    public Set<Group> getGroup() {
-        return group;
-    }
-
-    public void setGroup(Set<Group> group) {
-        this.group = group;
-    }
-
     public String getPassword_confirm(){
         return password_confirm;
     }
 
-    public void setPassword_confirm(String password_confirm){
+    public void setPassword_Confirm(String password_confirm){
         this.password_confirm = password_confirm;
     }
 
@@ -180,4 +131,5 @@ public class User {
         this.email = email;
         this.avatar = avatar;
     }
+
 }

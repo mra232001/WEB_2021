@@ -29,10 +29,6 @@ public class Comment {
         return comment_id != null ? comment_id.hashCode() : 0;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    Post post;
-
     public Comment(Long comment_id, String comment_text) {
         this.comment_id = comment_id;
         this.comment_text = comment_text;
@@ -66,11 +62,4 @@ public class Comment {
         this.user = user;
     }
 
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
 }
