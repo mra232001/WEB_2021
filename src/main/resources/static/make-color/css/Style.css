@@ -1,5 +1,12 @@
-body{
+#bd{
+    min-height: 100vh;
+}
+#header{
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+body {
     background-color: rgba(170,170,170,0.5);
+    background-image: url("../resources/static/Images/background_image.jpg");
 }
 
 p{

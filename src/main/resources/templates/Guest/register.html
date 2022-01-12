@@ -134,6 +134,10 @@
             margin-left : 100px;
         }
 
+        .error{
+            color : red;
+        }
+
     </style>
 </head>
 <body>
@@ -155,9 +159,9 @@
     </div>
 
     <form action="#" th:action="@{/user/save}" th:object="${user}" method = "post" class = "login">
-        <input type = "text" th:field="*{username}" placeholder="Username">
+        <input type = "text" th:field="*{username}" placeholder="Username" th:error>
         <input type = "password" th:field="*{password}" placeholder="Password">
-        <input type = "password" th:field="*{password_Confirm}" placeholder="Password confirm">
+        <input type = "password" th:field="*{password_confirm}" placeholder="Password confirm">
         <button id = "Register" type = submit>Register</button>
         <br>
         <a th:href = "@{/user/login}">Already have an account? Sign in here!</a>

@@ -1,52 +1,52 @@
 package com.example.web.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 @Entity
-@Table(name = "user")
+@Table(name = "users",schema = "webproject")
 public class User {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    Long id;
-    String username;
-    String password;
-    String password_confirm;
-    String firstname;
-    String middlename;
-    String lastname;
-    String email;
-    String avatar;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-    /// user - comment
-    @OneToMany(mappedBy = "user")
-    Set<Comment> commentSet = new HashSet<>();
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "at least 4 characters")
+    @Column(name = "username")
+    private String username;
 
-    public Long getId() {
-        return id;
+    @NotNull(message = "is require")
+    @Size(min = 4, message = "at least 8 characters")
+    @Column(nullable = false,unique = false,name = "password")
+    private String password;
+
+    @Column(name = "id_role")
+    private int id_role;
+
+    public User(){
+
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getId_role() {
+        return id_role;
     }
+
+    public void setId_role(int id_role) {
+        this.id_role = id_role;
+    }
+
+    public User(String Username, String Password){
+        this.username = Username;
+        this.password = Password;
+    }
+
     public String getUsername() {
         return username;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        return id != null ? id.equals(user.id) : user.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 
     public void setUsername(String username) {
@@ -59,77 +59,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getMiddlename() {
-        return middlename;
-    }
-
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public Set<Comment> getCommentSet() {
-        return commentSet;
-    }
-
-    public void setCommentSet(Set<Comment> commentSet) {
-        this.commentSet = commentSet;
-    }
-
-    public String getPassword_confirm(){
-        return password_confirm;
-    }
-
-    public void setPassword_Confirm(String password_confirm){
-        this.password_confirm = password_confirm;
-    }
-
-    public User() {
-
-    }
-
-    public User(Long id, String username, String password, String firstname, String middlename, String lastname, String email, String avatar) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.email = email;
-        this.avatar = avatar;
     }
 
 }

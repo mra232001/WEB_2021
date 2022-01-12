@@ -124,7 +124,7 @@
         </nav>
     </div>
 
-    <form action="#" th:action="@{/user/authenticate}" th:object="${user}" method = "post" class = "login">
+    <form action="#" th:action="@{/user/authenticateTheUser}" th:object="${user}" method = "post" class = "login">
         <input type = "text" th:field="*{username}" placeholder="User">
         <input type = "password" th:field="*{password}" placeholder="Password">
         <button type = submit>Login</button>

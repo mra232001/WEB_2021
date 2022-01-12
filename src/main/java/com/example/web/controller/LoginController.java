@@ -1,17 +1,22 @@
 package com.example.web.controller;
 
 import com.example.web.entity.User;
+import com.example.web.more.ValidatedUser;
 import com.example.web.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/user")
 public class LoginController {
 
+    @Autowired
     private LoginService loginService;
 
     public LoginController(LoginService loginService){
@@ -20,27 +25,29 @@ public class LoginController {
 
     @GetMapping("/register")
     public String register(Model model){
-        User user = new User();
+        ValidatedUser user = new ValidatedUser();
         model.addAttribute("user",user);
+
         return "Guest/register";
     }
 
-
-    @GetMapping("/list")
-    public String list(Model model){
-        List<User> userList = loginService.listAll();
-
-        model.addAttribute("users",userList);
-
-        return "Guest/list";
-    }
-
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute("user") User theUser){
-        if(theUser.getPassword().equals(theUser.getPassword_confirm())) {
-            loginService.Register(theUser);
-            return "Guest/demo";
-        } else return "redirect:/register";
+    public String saveUser(@Valid @ModelAttribute("user") ValidatedUser theUser,
+                           BindingResult thebindingresult,
+                           Model model ){
+        if(thebindingresult.hasErrors()){
+            return "Guest/register";
+        }
+
+        User exsitingUser = loginService.findbyUsername(theUser.getUsername());
+        if(exsitingUser != null){
+            model.addAttribute("user",new ValidatedUser());
+            model.addAttribute("RegistrationError","Username already exists");
+            return "Guest/register";
+        }
+
+        loginService.Register(theUser);
+        return "Guest/demo";
     }
 
     @GetMapping("/login")
@@ -52,7 +59,8 @@ public class LoginController {
     }
 
     @PostMapping("/authenticate")
-    public String authenticateUser(@RequestParam("user") User theUser){
+    public String authenticateUser(){
+
         return "Guest/demo";
     }
 }

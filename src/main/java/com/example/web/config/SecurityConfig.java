@@ -4,11 +4,12 @@ import com.example.web.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
@@ -30,16 +31,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().and().formLogin().loginPage("/login").loginProcessingUrl("/authenticate").successHandler(authenticationSucessHandler).permitAll()
+        http.httpBasic().disable();
+        http.authorizeRequests()
+                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
-                .logout().permitAll().and().exceptionHandling().accessDeniedPage("/access-denied");
-
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/authenticateTheUser")
+                .successHandler(authenticationSucessHandler)
+                .permitAll()
+                .and()
+                .logout().permitAll()
+                .and().
+                exceptionHandling().accessDeniedPage("/access-denied");
     }
 
     @Bean

@@ -3,7 +3,6 @@ package com.example.web.config;
 import com.example.web.entity.User;
 import com.example.web.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -26,10 +25,12 @@ public class AuthenticationSucessHandler implements AuthenticationSuccessHandler
 
         User user = loginService.findbyUsername(Username);
 
-        HttpSession httpSession = request.getSession();
 
+        //Place in session
+        HttpSession httpSession = request.getSession();
         httpSession.setAttribute("user",user);
 
-        response.sendRedirect(request.getContextPath() + "/");
+        //Send response
+        response.sendRedirect(request.getContextPath() + "/main");
     }
 }
