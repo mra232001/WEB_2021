@@ -12,35 +12,26 @@ public class ValidatedUser {
 
     @NotNull(message =  "is required")
     @Size(min = 1,message = "is required")
-    private String Username;
+    private String username;
 
-    @NotNull(message =  "is required")
+    @NotNull(message =  "password is required")
     @Size(min = 1,message = "is required")
     private String password;
 
-    @NotNull(message =  "is required")
+    @NotNull(message =  "password is required")
     @Size(min = 1,message = "is required")
     private String password_confirm;
 
-    @NotNull(message =  "is required")
-    @Size(min = 1,message = "is required")
-    private String firstName;
-
-    @NotNull(message =  "is required")
-    @Size(min = 1,message = "is required")
-    private String secondName;
-
     public ValidatedUser(){
-
     }
 
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getPassword() {
@@ -57,21 +48,5 @@ public class ValidatedUser {
 
     public void setPassword_confirm(String password_confirm) {
         this.password_confirm = password_confirm;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
     }
 }

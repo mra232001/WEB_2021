@@ -35,6 +35,7 @@ public class LoginService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public void Register(ValidatedUser validatedUser){
         User user = new User();
         user.setUsername(validatedUser.getUsername());
@@ -43,21 +44,21 @@ public class LoginService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    @Transactional
     public User findbyUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    public List<User> listAll(){
-        return userRepository.findAll();
     }
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
+
         if(user == null){
             throw new UsernameNotFoundException("Invalid username and password");
         }
+        System.out.println("found user " + username);
+        System.out.println(user.getPassword() + "\n") ;
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),mapRolestoAuthorities(user.getId_role()));
     }
 

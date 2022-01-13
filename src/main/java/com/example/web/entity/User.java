@@ -15,13 +15,9 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "at least 4 characters")
     @Column(name = "username")
     private String username;
 
-    @NotNull(message = "is require")
-    @Size(min = 4, message = "at least 8 characters")
     @Column(nullable = false,unique = false,name = "password")
     private String password;
 

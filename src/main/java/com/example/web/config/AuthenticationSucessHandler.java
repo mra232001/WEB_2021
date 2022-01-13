@@ -21,10 +21,10 @@ public class AuthenticationSucessHandler implements AuthenticationSuccessHandler
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+
         String Username = authentication.getName();
 
         User user = loginService.findbyUsername(Username);
-
 
         //Place in session
         HttpSession httpSession = request.getSession();

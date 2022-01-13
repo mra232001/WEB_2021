@@ -3,6 +3,8 @@
 <html lang="en" xmlns: th="http://www.thymeleaf.org">
 <head>
     <link th:href="@{/make-color/css/uikit.min.css}" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script th:src="@{/make-color/js/uikit.min.js}"></script>
     <script th:src="@{/make-color/js/uikit-icons.min.js}"></script>
     <title>Home</title>
@@ -159,12 +161,49 @@
     </div>
 
     <form action="#" th:action="@{/user/save}" th:object="${user}" method = "post" class = "login">
-        <input type = "text" th:field="*{username}" placeholder="Username" th:error>
-        <input type = "password" th:field="*{password}" placeholder="Password">
-        <input type = "password" th:field="*{password_confirm}" placeholder="Password confirm">
+
+        <div class="form-group">
+            <div class="col-xs-15">
+                <div>
+                    <!-- Check for registration error -->
+                    <div th:if="${registrationError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+                        <span th:text="${registrationError}"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <input type = "text" th:field="*{username}" placeholder="Username (*)" th:error>
+
+        <div th:if="${#fields.hasErrors('username')}"
+             style="margin-bottom: 25px" class="text-danger">
+            <ul>
+                <li th:each="err : ${#fields.errors('username')}" th:text="'User name ' + ${err}" />
+            </ul>
+        </div>
+
+        <input type = "password" th:field="*{password}" placeholder="Password (*)">
+
+        <div th:if="${#fields.hasErrors('password')}"
+             style="margin-bottom: 25px" class="text-danger">
+            <ul>
+                <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
+            </ul>
+        </div>
+
+        <input type = "password" th:field="*{password_confirm}" placeholder="Password confirm (*)">
+
+        <div th:if="${#fields.hasErrors('password_confirm')}"
+             style="margin-bottom: 25px" class="text-danger">
+            <ul>
+                <li th:each="err : ${#fields.errors('password_confirm')}" th:text=" ${err}" />
+            </ul>
+        </div>
+
         <button id = "Register" type = submit>Register</button>
         <br>
-        <a th:href = "@{/user/login}">Already have an account? Sign in here!</a>
+        <a th:href = "@{/login}">Already have an account? Sign in here!</a>
     </form>
 
     <div class="uk-margin-auto-top">

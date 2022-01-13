@@ -2,7 +2,6 @@ package com.example.web.controller;
 
 import com.example.web.entity.Routine;
 import com.example.web.entity.User;
-import com.example.web.more.Input;
 import com.example.web.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,17 +36,6 @@ public class MainController {
         List<Integer> listRoutines = new ArrayList<>();
         model.addAttribute("list_routines",listRoutines);
         return "Authenticated/MyPersonalPage";
-    }
-
-    @PostMapping("/search")
-    public String search(@RequestParam("input") Input input){
-        if(input.isPerson.equals("on")){
-            List<User> userList = mainService.findUserbyKeyword(input);
-            return "ResultOfFilter";
-        } else {
-            List<Routine> routineList = mainService.findAllroutinesOwned(1);
-            return "ResultofFilter2";
-        }
     }
 
     @GetMapping("/logout")

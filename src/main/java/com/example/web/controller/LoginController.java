@@ -4,13 +4,15 @@ import com.example.web.entity.User;
 import com.example.web.more.ValidatedUser;
 import com.example.web.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/user")
@@ -19,8 +21,18 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    private final Logger logger = Logger.getLogger(getClass().getName());
+
     public LoginController(LoginService loginService){
         this.loginService = loginService;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
     @GetMapping("/register")
@@ -32,9 +44,13 @@ public class LoginController {
     }
 
     @PostMapping("/save")
-    public String saveUser(@Valid @ModelAttribute("user") ValidatedUser theUser,
+    public String saveUser( @ModelAttribute("user") @Valid ValidatedUser theUser,
                            BindingResult thebindingresult,
                            Model model ){
+
+        String userName = theUser.getUsername();
+        logger.info("Processing registration form for: " + userName);
+
         if(thebindingresult.hasErrors()){
             return "Guest/register";
         }
@@ -42,24 +58,15 @@ public class LoginController {
         User exsitingUser = loginService.findbyUsername(theUser.getUsername());
         if(exsitingUser != null){
             model.addAttribute("user",new ValidatedUser());
-            model.addAttribute("RegistrationError","Username already exists");
+            model.addAttribute("registrationError","Username already exists");
+
+            logger.warning("Username is already exists.");
             return "Guest/register";
         }
 
         loginService.Register(theUser);
-        return "Guest/demo";
-    }
 
-    @GetMapping("/login")
-    public String login(Model model){
-        User user = new User();
-
-        model.addAttribute("user",user);
-        return "Guest/login";
-    }
-
-    @PostMapping("/authenticate")
-    public String authenticateUser(){
+        logger.info("Successfully created user: " + userName);
 
         return "Guest/demo";
     }
