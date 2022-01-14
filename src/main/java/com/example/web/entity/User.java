@@ -1,9 +1,8 @@
 package com.example.web.entity;
 
 import javax.persistence.*;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -23,6 +22,18 @@ public class User {
 
     @Column(name = "id_role")
     private int id_role;
+
+    @OneToMany(mappedBy = "owner",
+    cascade = CascadeType.ALL)
+    private List<Routine> routineList;
+
+    public List<Routine> getRoutineList() {
+        return routineList;
+    }
+
+    public void setRoutineList(List<Routine> routineList) {
+        this.routineList = routineList;
+    }
 
     public User(){
 
@@ -57,4 +68,13 @@ public class User {
         this.password = password;
     }
 
+
+    //add convenience method for bi-directional relationship
+    public void add(Routine TempRoutine){
+        if(this.routineList == null){
+            this.routineList = new ArrayList<>();
+        }
+        routineList.add(TempRoutine);
+        TempRoutine.setOwner(this);
+    }
 }

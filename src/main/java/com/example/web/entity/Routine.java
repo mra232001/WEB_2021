@@ -1,9 +1,6 @@
 package com.example.web.entity;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "routine",schema = "webproject")
@@ -24,23 +21,33 @@ public class Routine {
     @Column(name = "volumn")
     public Double Volumn;
 
-    @Column(name = "id_owner")
-    int id_owner;
-
     @Column(name = "like_number")
     int LikeNumber;
 
     @Column(name = "comment_number")
     int CommentNumber;
 
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST})
+    @JoinColumn(name = "id_owner")
+    private User owner;
+
+    public void setLikeNumber(int likeNumber) {
+        LikeNumber = likeNumber;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
     public Routine(int id, String name, int number) {
         this.id = id;
         this.Routine_name = name;
         this.number = number;
     }
-
-    @OneToMany
-    List<Exercise> exerciseList;
 
     public Routine() {
 
@@ -94,14 +101,6 @@ public class Routine {
         Volumn = volumn;
     }
 
-    public int getId_owner() {
-        return id_owner;
-    }
-
-    public void setId_owner(int id_owner) {
-        this.id_owner = id_owner;
-    }
-
     public Integer getLikeNumber() {
         return LikeNumber;
     }
@@ -118,11 +117,4 @@ public class Routine {
         CommentNumber = commentNumber;
     }
 
-    public List<Exercise> getExerciseList() {
-        return exerciseList;
-    }
-
-    public void setExerciseList(List<Exercise> exerciseList) {
-        this.exerciseList = exerciseList;
-    }
 }
