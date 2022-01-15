@@ -1,8 +1,10 @@
 package com.example.web.service;
 
+import com.example.web.entity.Routine;
 import com.example.web.entity.User;
 import com.example.web.more.ValidatedUser;
 import com.example.web.repository.RoleRepository;
+import com.example.web.repository.RoutineRepository;
 import com.example.web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +27,9 @@ public class LoginService implements UserDetailsService {
     public UserRepository userRepository;
 
     @Autowired
+    public RoutineRepository routineRepository;
+
+    @Autowired
     public RoleRepository roleRepository;
 
     @Autowired
@@ -41,6 +46,10 @@ public class LoginService implements UserDetailsService {
         user.setUsername(validatedUser.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(validatedUser.getPassword()));
         if(user.getUsername().equals("admin")) user.setId_role(2); else user.setId_role(1);
+        user.add(routineRepository.getById(2));
+        for(Routine routine: routineRepository.findAll()){
+            System.out.println(routine.getRoutine_name() + "\n");
+        }
         userRepository.save(user);
     }
 

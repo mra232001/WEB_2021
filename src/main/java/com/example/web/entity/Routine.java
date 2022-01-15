@@ -1,13 +1,17 @@
 package com.example.web.entity;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.lang.reflect.Array;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "routine",schema = "webproject")
+@Transactional
 public class Routine {
 
     @Id
@@ -17,10 +21,9 @@ public class Routine {
 
     @Column(name = "name")
     String Routine_name;
-    int number; /// this is set training
 
     @Column(name = "duration")
-    public Integer Duration;
+    public Time Duration;
 
     @Column(name = "volumn")
     public Double Volumn;
@@ -69,10 +72,9 @@ public class Routine {
         this.owner = owner;
     }
 
-    public Routine(int id, String name, int number) {
+    public Routine(int id, String name) {
         this.id = id;
         this.Routine_name = name;
-        this.number = number;
     }
 
     public Routine() {
@@ -95,14 +97,6 @@ public class Routine {
         this.Routine_name = name;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public String getRoutine_name() {
         return Routine_name;
     }
@@ -111,11 +105,11 @@ public class Routine {
         Routine_name = routine_name;
     }
 
-    public Integer getDuration() {
+    public Time getDuration() {
         return Duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Time duration) {
         Duration = duration;
     }
 

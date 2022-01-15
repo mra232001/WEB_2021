@@ -1,5 +1,7 @@
 package com.example.web.entity;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users",schema = "webproject")
+@Transactional
 public class User {
 
     @Id
