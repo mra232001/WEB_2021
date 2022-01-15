@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class LoginController {
 
     @Autowired
-    private LoginService loginService;
+    public LoginService loginService;
 
     private final Logger logger = Logger.getLogger(getClass().getName());
 

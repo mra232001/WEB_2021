@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface RoutineRepository extends JpaRepository<Routine,Integer> {
 
-    @Query("select r from Routine r where r.id_owner = ?1")
-    List<Routine> findAllById_owner (int id_owner);
+
 }

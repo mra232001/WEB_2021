@@ -1,6 +1,10 @@
 package com.example.web.entity;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "routine",schema = "webproject")
@@ -30,6 +34,28 @@ public class Routine {
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST})
     @JoinColumn(name = "id_owner")
     private User owner;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinTable(name = "routine_exercise",
+    joinColumns = @JoinColumn(name = "id_routine"),
+    inverseJoinColumns = @JoinColumn(name = "id_exercise"))
+    private List<Exercise> exerciseList;
+
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
+    }
+
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
+    }
+
+    public void addExercise(Exercise exercise){
+        if(exerciseList == null){
+            exerciseList = new ArrayList<>();
+        }
+        exerciseList.add(exercise);
+
+    }
 
     public void setLikeNumber(int likeNumber) {
         LikeNumber = likeNumber;

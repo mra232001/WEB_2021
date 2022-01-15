@@ -6,35 +6,82 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "exercise",schema ="webproject")
 public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    private int id;
 
+    @Column(name = "name")
     public String Exercise_name;
 
+    @Column(name = "description")
     public String Description;
 
+    @Column(name = "equipment")
     public String equipment;
 
-    public Exercise(String name, String description, String equipment){
+    @Column(name = "detail")
+    public String DetailDescription;
+
+    @Column(name = "image")
+    public String urlImage;
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    @Column(name = "primary_muscle")
+    public String Primary_muscle;
+    public Exercise(String name, String description, String equipment, String primary_muscle,String detailDescription){
+        this.DetailDescription = detailDescription;
         this.Description = description;
         this.equipment = equipment;
         this.Exercise_name = name;
+        this.Primary_muscle = primary_muscle;
     }
 
-    public Exercise(){
-
+    public String getDetailDescription() {
+        return DetailDescription;
     }
+
+    public void setDetailDescription(String detailDescription) {
+        DetailDescription = detailDescription;
+    }
+
+    public List<Routine> getRoutineListBeOwnedBy() {
+        return routineListBeOwnedBy;
+    }
+
+    public void setRoutineListBeOwnedBy(List<Routine> routineListBeOwnedBy) {
+        this.routineListBeOwnedBy = routineListBeOwnedBy;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinTable(name = "routine_exercise",
+            joinColumns = @JoinColumn(name = "id_exercise"),
+            inverseJoinColumns = @JoinColumn(name = "id_routine"))
+    private List<Routine> routineListBeOwnedBy;
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getPrimary_muscle() {
+        return Primary_muscle;
+    }
+
+    public void setPrimary_muscle(String primary_muscle) {
+        Primary_muscle = primary_muscle;
+    }
+
+    public Exercise(){
+
     }
 
     public String getExercise_name() {

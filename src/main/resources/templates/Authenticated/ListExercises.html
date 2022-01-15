@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <link th:href="@{/make-color/css/uikit.min.css}" rel="stylesheet" />
@@ -71,73 +69,43 @@
         </nav>
     </div>
 
-    <div>
-        User: <span sec:authentication="name"></span>
-        <br><br>
-        Role(s): <span sec:authentication="principal.authorities"></span>
-        <br><br>
-        <div th:if="${session.user}" >
-            <p th:text="'First name: ' + ${session.user.username} "></p>
-        </div>
+    <div id="products-grid" class="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s uk-child-width-1-1 uk-margin-small uk-margin-small-left" uk-grid >
+        <div th:each="exercise:${exerciseList}">
 
-    </div>
-
-    <div id="products-grid" class="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s uk-child-width-1-1 uk-margin-small uk-margin-small-left" uk-grid>
-        <div th:each="routine:${routines}">
-            <div>
-                <div class="uk-card uk-card-hover uk-card-default">
-                    <a class="uk-link-reset" th:href="@{/routine/} + ${routine.id}">
-                        <div class="uk-padding-small">
-                            <dl class="uk-description-list">
-                                <div class="uk-text-bold uk-text-large uk-text-muted">
-                                    <dt th:text = "${routine.name}"></dt>
-                                </div>
-                                <div class="uk-text-small uk-text-muted">
-                                    <dd th:text = "${'Time : '} + ${routine.duration}"></dd>
-                                    <dd th:text = "${'Volumn : '} + ${routine.volumn}"></dd>
-                                </div>
-                            </dl>
-                        </div>
-
-
-                        <div class="uk-card-media-top">
-                            <img src= "../img.jpg"></div>
-                        <div class="uk-card-body">
-                            <div>
-                                <dl class="uk-description-list">
-                                    <div class="uk-text-bold uk-text-large uk-text-muted">
-                                        <dd>3 sets of Pull Ups</dd>
-                                        <dd>4 sets of Push Ups</dd>
-                                        <dd>5 sets of Chin Ups</dd>
-                                    </div>
-                                </dl>
+        <div>
+            <div class="uk-card uk-card-hover uk-card-default">
+                <a class="uk-link-reset" th:href="@{/exercise/detail(id=${exercise.getId()})}">
+                    <div class="uk-padding-small">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dt><p th:text="${exercise.getExercise_name()}"></p></dt>
                             </div>
-                        </div>
-                        <div class = uk-margin-small-left>
-                            <p th:text = "${routine.LikeNumber} + ${' people like this post'}"></p>
-                            <p th:text = "${routine.CommentNumber} + ${' comments'}"></p>
-                        </div>
-                        <div class="uk-margin-small-left">
-                            <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
-                            <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                            <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
-                        </div>
-                    </a>
-                </div>
+                            <div class="uk-text-small uk-text-muted">
+                                <dd><p th:text="'Primary muscle : ' + ${exercise.primary_muscle}"></p></dd>
+                                <dd><p th:text="'Equipment : ' + ${exercise.getEquipment()}"></p></dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-card-media-top">
+                        <img th:src="@{${exercise.getUrlImage()}}">
+                    </div>
+
+                    <div class = "uk-margin-top">
+                        <p th:text="'Description : ' + ${exercise.getDescription()}"></p>
+                    </div>
+
                 </a>
             </div>
         </div>
         </div>
 
-
     </div>
 
-
-<div class="uk-margin-auto-top" >
+    <div class="uk-margin-auto-top">
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-center">
                 <div class="uk-navbar-center-left">
-                    <a th:href="@{/main}" class="uk-navbar-item uk-logo">StrongFit</a>
+                    <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
                 </div>
                 <div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
                     <div class="uk-margin-small-right">
