@@ -1,7 +1,8 @@
 package com.example.web.controller;
 
 import com.example.web.entity.Exercise;
-import com.example.web.more.Input;
+import com.example.web.entity.Routine;
+import com.example.web.entity.User;
 import com.example.web.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,8 +41,27 @@ public class MainController {
     public String search(@RequestParam("input") String input,
                          @RequestParam("Type") String type,
                          Model theModel){
-        if(type.equals("Person")) return "Manh/ResultOfFilter"; else
-            return "Manh/ResultofFilter2";
+        if(IsId(input)){
+            int inputId = ConvertStringToInt(input);
+            if(type.equals("Person")){
+                User user = mainService.findUserById(inputId);
+                List<User> users = new ArrayList<>();
+                users.add(user);
+                theModel.addAttribute("users",user);
+                return "Authenticated/ResultOfFilter";
+            } else{
+                List<Routine> routineList = new ArrayList<>();
+                Routine routine = mainService.findRoutineById(inputId);
+                routineList.add(routine);
+                theModel.addAttribute("routines",routineList);
+                return "Authenticated/ResultofFilter2";
+            }
+
+        }
+        if(type.equals("Person")){
+            return "Authenticated/ResultOfFilter";
+        } else
+            return "Authenticated/ResultofFilter2";
     }
 
     @GetMapping("/list_exercises")
@@ -51,6 +71,24 @@ public class MainController {
         model.addAttribute("exerciseList",exerciseList);
 
         return "Authenticated/ListExercises";
+    }
+
+    private int ConvertStringToInt(String input){
+        int result = 0;
+        char[] chars = input.toCharArray();
+        for(char c: chars){
+            result = result * 10 + Integer.valueOf(c);
+        }
+        return result;
+    }
+
+    private boolean IsId(String input){
+        boolean result = true;
+        char[] chars = input.toCharArray();
+        for(char c: chars){
+            if(!Character.isDigit(c)) result = false;
+        }
+        return result;
     }
 
 }

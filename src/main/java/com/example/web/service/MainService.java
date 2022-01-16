@@ -1,6 +1,8 @@
 package com.example.web.service;
 
 import com.example.web.entity.Exercise;
+import com.example.web.entity.Routine;
+import com.example.web.entity.User;
 import com.example.web.repository.ExerciseRepository;
 import com.example.web.repository.RoutineRepository;
 import com.example.web.repository.UserRepository;
@@ -32,11 +34,19 @@ public class MainService  {
         this.userRepository = userRepository;
     }
 
+    public User findUserById(int id){
+        return userRepository.getById(id);
+    }
+
     public List<Exercise> listAllExercises(){
         return exerciseRepository.findAll();
     }
 
-    public Exercise findById(int id){
+    public Exercise findExerciseById(int id){
         return exerciseRepository.getById(id);
+    }
+
+    public Routine findRoutineById(int id){
+        return routineRepository.getById(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.web.entity;
 
+import com.example.web.more.LinkUsers;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -26,9 +27,26 @@ public class User {
     @Column(name = "id_role")
     private int id_role;
 
-    @OneToMany(mappedBy = "owner",
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",
     cascade = CascadeType.ALL)
-    private List<Routine> routineList;
+    public List<Routine> routineList;
+
+    @OneToMany(mappedBy = "id_follower",
+            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<LinkUsers> linkUsersList;
+
+    public List<LinkUsers> getLinkUsersList() {
+        return linkUsersList;
+    }
+
+    public void setLinkUsersList(List<LinkUsers> linkUsersList) {
+        this.linkUsersList = linkUsersList;
+    }
+
+    public void addLinkUsers(LinkUsers linkUsers){
+        if(this.linkUsersList == null) this.linkUsersList = new ArrayList<>();
+        this.linkUsersList.add(linkUsers);
+    }
 
     public List<Routine> getRoutineList() {
         return routineList;
