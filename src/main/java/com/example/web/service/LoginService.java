@@ -47,7 +47,7 @@ public class LoginService implements UserDetailsService {
         user.setPassword(bCryptPasswordEncoder.encode(validatedUser.getPassword()));
         if(user.getUsername().equals("admin")) user.setId_role(2); else user.setId_role(1);
         user.SetProfile();
-        user.add(routineRepository.getById(1));
+        user.add(new Routine(routineRepository.getById(1)));
         userRepository.save(user);
     }
 

@@ -81,6 +81,13 @@ public class Routine {
 
     }
 
+    public Routine(Routine routine){
+        this.name = routine.getName();
+        this.exerciseList = routine.getExerciseList();
+        this.Duration = routine.getDuration();
+        this.Volumn = routine.getVolumn();
+    }
+
     public int getId() {
         return id;
     }

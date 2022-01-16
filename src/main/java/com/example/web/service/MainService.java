@@ -35,7 +35,6 @@ public class MainService  {
         this.userRepository = userRepository;
     }
 
-
     public User findUserById(int id){
         return userRepository.getById(id);
     }

@@ -1,6 +1,5 @@
 package com.example.web.controller;
 
-import com.example.web.entity.Exercise;
 import com.example.web.entity.Routine;
 import com.example.web.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
