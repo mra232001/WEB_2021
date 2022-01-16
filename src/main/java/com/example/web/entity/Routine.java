@@ -20,7 +20,7 @@ public class Routine {
     int id;
 
     @Column(name = "name")
-    String Routine_name;
+    public String name;
 
     @Column(name = "duration")
     public Time Duration;
@@ -74,7 +74,7 @@ public class Routine {
 
     public Routine(int id, String name) {
         this.id = id;
-        this.Routine_name = name;
+        this.name = name;
     }
 
     public Routine() {
@@ -90,19 +90,11 @@ public class Routine {
     }
 
     public String getName() {
-        return Routine_name;
+        return name;
     }
 
     public void setName(String name) {
-        this.Routine_name = name;
-    }
-
-    public String getRoutine_name() {
-        return Routine_name;
-    }
-
-    public void setRoutine_name(String routine_name) {
-        Routine_name = routine_name;
+        this.name = name;
     }
 
     public Time getDuration() {
@@ -137,4 +129,20 @@ public class Routine {
         CommentNumber = commentNumber;
     }
 
+    public void setObject(Routine routine){
+        this.name = routine.name;
+        this.owner = routine.owner;
+    }
+
+    @PostLoad
+    public void postLoad(){
+        try {
+            if(name == null){
+                setObject(null);
+            }
+        }
+        catch (EntityNotFoundException e){
+            setObject(null);
+        }
+    }
 }

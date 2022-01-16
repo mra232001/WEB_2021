@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PostLoad;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,16 +35,28 @@ public class MainService  {
         this.userRepository = userRepository;
     }
 
+
     public User findUserById(int id){
         return userRepository.getById(id);
     }
+
+
+    public List<Routine> findRoutineByName(String name){
+        return routineRepository.findRoutineByName(name);
+    }
+
 
     public List<Exercise> listAllExercises(){
         return exerciseRepository.findAll();
     }
 
+
     public Exercise findExerciseById(int id){
         return exerciseRepository.getById(id);
+    }
+
+    public User findUserbyUsername(String username){
+        return userRepository.findByUsername(username);
     }
 
     public Routine findRoutineById(int id){

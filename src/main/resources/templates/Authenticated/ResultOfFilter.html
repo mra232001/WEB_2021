@@ -74,22 +74,21 @@
             <caption>Result of people</caption>
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Nickname</th>
                 <th>Fullname</th>
+                <th>Link Profile</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>6</td>
-                <td>UserTemp5</td>
-                <td>Н. И. Шейко</td>
+            <tr th:each="tempuser:${users}">
 
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>UserTemp2</td>
-                <td>В. П. Берков</td>
+                <td th:text="${tempuser.username}" />
+                <td th:text="${tempuser.fullname}"/>
+                <td>
+                <a th:href = "@{/profile(userId=${tempuser.id})}" class="uk-button">
+                    Profile
+                </a>
+                </td>
             </tr>
             </tbody>
         </table>

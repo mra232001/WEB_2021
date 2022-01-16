@@ -14,18 +14,39 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    public int id;
 
     @Column(name = "username")
-    private String username;
+    public String username;
 
     @Column(nullable = false,unique = false,name = "password")
     private String password;
 
     @Column(name = "id_role")
     private int id_role;
+
+    @Column(name = "fullname")
+    public String fullname;
+
+    @Column(name = "age")
+    public int age;
+
+    @Column(name = "quantityroutine")
+    public int quantityroutine;
+
+    @Column(name = "quantityfollower")
+    public int quantityfollower;
+
+    @Column(name = "quantityfollowed")
+    public int quantityfollowed;
+
+    @Column(name = "bio")
+    public String bio;
+
+    @Column(name = "sex")
+    public int sex;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",
     cascade = CascadeType.ALL)
@@ -58,6 +79,10 @@ public class User {
 
     public User(){
 
+    }
+
+    public void setId(int Id){
+        this.id = Id;
     }
 
     public int getId_role() {
@@ -96,6 +121,17 @@ public class User {
             this.routineList = new ArrayList<>();
         }
         routineList.add(TempRoutine);
+        quantityroutine++;
         TempRoutine.setOwner(this);
+    }
+
+    public void SetProfile(){
+        fullname = "";
+        quantityroutine = 0;
+        quantityfollowed = 0;
+        quantityfollower = 0;
+        bio = "";
+        sex = 1;
+        age = 20;
     }
 }

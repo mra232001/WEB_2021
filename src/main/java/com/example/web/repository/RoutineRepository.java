@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface RoutineRepository extends JpaRepository<Routine,Integer> {
 
+    public List<Routine> findRoutineByName(String name);
 
 }

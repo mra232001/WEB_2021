@@ -46,6 +46,7 @@ public class MainController {
             if(type.equals("Person")){
                 User user = mainService.findUserById(inputId);
                 List<User> users = new ArrayList<>();
+                user.setId(inputId);
                 users.add(user);
                 theModel.addAttribute("users",user);
                 return "Authenticated/ResultOfFilter";
@@ -57,11 +58,17 @@ public class MainController {
                 return "Authenticated/ResultofFilter2";
             }
 
+        } else {
+            if(type.equals("Person")){
+                return "Authenticated/ResultOfFilter";
+            } else {
+                List<Routine> routineList = new ArrayList<>();
+                routineList = mainService.findRoutineByName(input);
+                theModel.addAttribute("routines",routineList);
+                return "Authenticated/ResultofFilter2";
+            }
         }
-        if(type.equals("Person")){
-            return "Authenticated/ResultOfFilter";
-        } else
-            return "Authenticated/ResultofFilter2";
+
     }
 
     @GetMapping("/list_exercises")
@@ -77,7 +84,7 @@ public class MainController {
         int result = 0;
         char[] chars = input.toCharArray();
         for(char c: chars){
-            result = result * 10 + Integer.valueOf(c);
+            result = result * 10 + Integer.valueOf(c-'0');
         }
         return result;
     }
