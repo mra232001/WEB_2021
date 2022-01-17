@@ -121,3 +121,5 @@ create table linkusers(
     id_followed int not null ,
     primary key (id)
 );
+
+delete from comment where id = 23;

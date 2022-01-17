@@ -109,8 +109,8 @@
                         <div class="uk-margin-small-left">
                             <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
                             <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                            <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
-                        </div>
+                            <a th:if="${session.user.id} != ${routine.owner.id}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                            <a th:unless="${session.user.id} != ${routine.owner.id}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>                        </div>
                     </a>
                 </div>
                 </a>

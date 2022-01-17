@@ -3,13 +3,12 @@ package com.example.web.controller;
 import com.example.web.entity.Exercise;
 import com.example.web.entity.Routine;
 import com.example.web.entity.User;
+import com.example.web.more.LinkUsers;
 import com.example.web.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,4 +95,15 @@ public class MainController {
         return result;
     }
 
+    @PostMapping("/follow")
+    public String followUser(@RequestParam("from") int idfrom,
+                             @RequestParam("to") int idTo,
+                             @ModelAttribute("user") User user
+    ){
+        User Follower = mainService.findUserbyId(idfrom);
+        User Followed = mainService.findUserbyId(idTo);
+        LinkUsers linkUsers = new LinkUsers(Follower,Followed);
+        mainService.SaveLink(linkUsers);
+        return "redirect:/profile/?userId=" + user.getId();
+    }
 }

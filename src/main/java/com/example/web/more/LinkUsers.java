@@ -1,5 +1,7 @@
 package com.example.web.more;
 
+import com.example.web.entity.User;
+
 import javax.persistence.*;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,11 +16,13 @@ public class LinkUsers {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "id_follower")
-    private int id_follower;
+    @OneToOne
+    @JoinColumn(name = "id_follower")
+    private User follower;
 
-    @Column(name = "id_followed")
-    private int id_followed;
+    @OneToOne
+    @JoinColumn(name = "id_followed")
+    private User followed;
 
     public int getId() {
         return id;
@@ -28,19 +32,24 @@ public class LinkUsers {
         this.id = id;
     }
 
-    public int getId_follower() {
-        return id_follower;
+    public LinkUsers(User follower, User followed){
+        this.follower = follower;
+        this.followed = followed;
     }
 
-    public void setId_follower(int id_follower) {
-        this.id_follower = id_follower;
+    public User getFollower() {
+        return follower;
     }
 
-    public int getId_followed() {
-        return id_followed;
+    public void setFollower(User follower) {
+        this.follower = follower;
     }
 
-    public void setId_followed(int id_followed) {
-        this.id_followed = id_followed;
+    public User getId_followed() {
+        return followed;
+    }
+
+    public void setId_followed(User id_followed) {
+        this.followed = id_followed;
     }
 }

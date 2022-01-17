@@ -89,13 +89,17 @@
             <div uk-alert th:text="'Bio : ' + ${user.bio}"></div>
 
             <div class="uk-button" >
-                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID}" th:href = "@{/user/follow(from=${session.user.id},to=${ID})}">Follow </a>
+                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID}" th:href = "@{/main/follow(from=${session.user.id},to=${ID})}" method ="post">Follow </a>
                 <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/profile/configure(id=${session.user.id})}" >Configure </a>
             </div>
 
             <div class="uk-button" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class = "uk-button uk-button-primary" th:if="${ID}!=1 " th:href="@{/admin/delete(user=${ID})}"
                    onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Ban User </a>
+            </div>
+
+            <div class="uk-button" >
+                <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/profile/configure(id=${session.user.id})}" >Add new routine </a>
             </div>
 
         </fieldset>

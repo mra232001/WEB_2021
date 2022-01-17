@@ -3,7 +3,9 @@ package com.example.web.service;
 import com.example.web.entity.Exercise;
 import com.example.web.entity.Routine;
 import com.example.web.entity.User;
+import com.example.web.more.LinkUsers;
 import com.example.web.repository.ExerciseRepository;
+import com.example.web.repository.LinkUsersReposiory;
 import com.example.web.repository.RoutineRepository;
 import com.example.web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class MainService  {
 
     @Autowired
     public ExerciseRepository exerciseRepository;
+
+    @Autowired
+    public LinkUsersReposiory linkUsersReposiory;
 
     public MainService(){
 
@@ -92,5 +97,9 @@ public class MainService  {
             throw new RuntimeException("Did not find routine with the id " +Id);
         }
         return routine;
+    }
+
+    public void SaveLink(LinkUsers linkUsers){
+        linkUsersReposiory.save(linkUsers);
     }
 }
