@@ -58,7 +58,28 @@ public class MainService  {
         return userRepository.findUsersByUsername(username);
     }
 
+    public User findOneUerbyUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
     public List<Routine> findRoutineById(int id){
         return routineRepository.findRoutineById(id);
+    }
+
+    public void saveUser(User user){
+        this.userRepository.save(user);
+    }
+
+    public User findUserbyId(int Id){
+        Optional<User> result = userRepository.findById(Id);
+        User user = null;
+        if(result!= null){
+            user = result.get();
+        } else {
+            throw new RuntimeException("Did not find user with the id " + Id);
+        }
+
+        return user;
+
     }
 }

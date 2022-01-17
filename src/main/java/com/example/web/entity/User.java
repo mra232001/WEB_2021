@@ -16,7 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int id;
+    private int id;
 
     @Column(name = "username")
     public String username;
@@ -46,12 +46,12 @@ public class User {
     public String bio;
 
     @Column(name = "sex")
-    public int sex;
+    public String sex;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",
     cascade = CascadeType.ALL)
     public List<Routine> routineList;
-
+/*
     @OneToMany(mappedBy = "id_follower",
             cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private List<LinkUsers> linkUsersList;
@@ -67,6 +67,31 @@ public class User {
     public void addLinkUsers(LinkUsers linkUsers){
         if(this.linkUsersList == null) this.linkUsersList = new ArrayList<>();
         this.linkUsersList.add(linkUsers);
+    }
+*/
+
+    public int getQuantityroutine() {
+        return quantityroutine;
+    }
+
+    public void setQuantityroutine(int quantityroutine) {
+        this.quantityroutine = quantityroutine;
+    }
+
+    public int getQuantityfollower() {
+        return quantityfollower;
+    }
+
+    public void setQuantityfollower(int quantityfollower) {
+        this.quantityfollower = quantityfollower;
+    }
+
+    public int getQuantityfollowed() {
+        return quantityfollowed;
+    }
+
+    public void setQuantityfollowed(int quantityfollowed) {
+        this.quantityfollowed = quantityfollowed;
     }
 
     public List<Routine> getRoutineList() {
@@ -131,7 +156,43 @@ public class User {
         quantityfollowed = 0;
         quantityfollower = 0;
         bio = "";
-        sex = 1;
+        sex = "Male";
         age = 20;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

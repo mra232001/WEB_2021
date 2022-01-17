@@ -6,9 +6,9 @@ import com.example.web.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/profile")
@@ -26,4 +26,19 @@ public class ProfileController {
         return "Authenticated/OtherUser;sPersonalpage2";
     }
 
+    @GetMapping("/configure")
+    public String ConfigureProfile(@RequestParam("id") int id,
+                                   Model model){
+        User user = mainService.findUserbyId(id);
+        model.addAttribute("user",user);
+        return "Authenticated/Configure";
+    }
+
+    @PostMapping("/save")
+    public String SaveProfile(@ModelAttribute("user") User user
+                              ){
+        mainService.saveUser(user);
+
+        return "redirect:/profile/?userId=" + user.getId();
+    }
 }

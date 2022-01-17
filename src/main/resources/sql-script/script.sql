@@ -15,7 +15,7 @@ Create table users(
     quantityfollower int,
     quantityfollowed int,
     bio varchar(1000),
-    sex int,
+    sex varchar(10),
     age int,
     primary key (id)
 );

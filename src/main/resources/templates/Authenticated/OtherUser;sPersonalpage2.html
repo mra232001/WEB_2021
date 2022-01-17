@@ -90,7 +90,7 @@
 
             <div class="uk-button" >
                 <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID}" th:href = "@{/user/follow(from=${session.user.id},to=${ID})}">Follow </a>
-                <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/user}" >Configure </a>
+                <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/profile/configure(id=${session.user.id})}" >Configure </a>
             </div>
 
             <div class="uk-button" sec:authorize="hasRole('ROLE_ADMIN')">
@@ -139,7 +139,8 @@
                         <div class="uk-margin-small-left">
                             <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
                             <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                            <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                            <a th:if="${session.user.id} != ${ID}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                            <a th:unless="${session.user.id} != ${ID}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
                         </div>
                     </a>
                 </div>
