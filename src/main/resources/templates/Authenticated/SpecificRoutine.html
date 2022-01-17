@@ -5,6 +5,7 @@
     <link th:href="@{/make-color/css/uikit.min.css}" rel="stylesheet" />
     <script th:src="@{/make-color/js/uikit.min.js}"></script>
     <script th:src="@{/make-color/js/uikit-icons.min.js}"></script>
+    <script th:src="@{/make-color/js/script.js}"></script>
     <title>Home</title>
     <meta charset="utf-8">
     <style>
@@ -135,18 +136,18 @@
                     </table>
 
                     <div class = uk-margin-small-top>
-                        <p th:text="${LikeNumber} ?: '0' + ' people like this post'"></p>
-                        <p th:text="${CommentNumber} ?: '0' + ' comments'"></p>
+                        <p th:text = "${routine.LikeNumber} + ${' people like this post'}"></p>
+                        <p th:text = "${routine.CommentNumber} + ${' comments'}"></p>
                     </div>
 
                     <div class="uk-margin-small-top">
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
-                        <a class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5" ></a>
+                        <a id="heart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" onclick="change_color()" th:action="@{/routine/like}"></a>
+                        <a class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5" onclick="show_hide()" ></a>
                         <a th:if="${session.user.id} != ${ID}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
                         <a th:unless="${session.user.id} != ${ID}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
                     </div>
 
-                    <div class ="uk-container ">
+                    <div class ="uk-container " id="container_comment">
                         <table class="uk-table uk-table-divider">
                             <thead>
                             <tr>
@@ -155,18 +156,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>UserTemp5</td>
-                                <td>
-                                    Impressive
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>UserTemp2</td>
-                                <td>Nice one!</td>
+                            <tr th:each="comment:${routine.commentList}">
+                                <td th:text="${comment.writer.username}"></td>
+                                <td th:text="${comment.content}"></td>
                             </tr>
                             </tbody>
                         </table>
+                        <form th:action="@{/routine/comment(writer=${session.user.id})}" th:object="${Newcomment}" method="post">
+                            <input class = "uk-input" th:field="*{content}" type = "text" placeholder="Write ur comment"/>
+                            <input type="hidden" th:field="*{routine}"/>
+                            <input type="hidden"  th:field="*{writer}"/>
+                        </form>
                     </div>
                 </div>
             </div>

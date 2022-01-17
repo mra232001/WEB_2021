@@ -55,6 +55,25 @@ public class Routine {
     inverseJoinColumns = @JoinColumn(name = "id_exercise"))
     private List<Exercise> exerciseList;
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "routine",
+            cascade = CascadeType.ALL)
+    public List<Comment> commentList;
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public void addComment(Comment comment){
+        if(commentList == null) commentList = new ArrayList<>();
+        commentList.add(comment);
+        CommentNumber++;
+        comment.setRoutine(this);
+    }
+
     public List<Exercise> getExerciseList() {
         return exerciseList;
     }
@@ -130,12 +149,8 @@ public class Routine {
         Volumn = volumn;
     }
 
-    public Integer getLikeNumber() {
+    public int getLikeNumber() {
         return LikeNumber;
-    }
-
-    public void setLikeNumber(Integer likeNumber) {
-        LikeNumber = likeNumber;
     }
 
     public int getCommentNumber() {
@@ -151,15 +166,4 @@ public class Routine {
         this.owner = routine.owner;
     }
 
-    @PostLoad
-    public void postLoad(){
-        try {
-            if(name == null){
-                setObject(null);
-            }
-        }
-        catch (EntityNotFoundException e){
-            setObject(null);
-        }
-    }
 }
