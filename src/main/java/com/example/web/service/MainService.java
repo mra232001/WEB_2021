@@ -82,4 +82,15 @@ public class MainService  {
         return user;
 
     }
+
+    public Routine findRoutinebyId(int Id){
+        Optional<Routine> result = routineRepository.findById(Id);
+        Routine routine = null;
+        if(result != null){
+            routine = result.get();
+        } else {
+            throw new RuntimeException("Did not find routine with the id " +Id);
+        }
+        return routine;
+    }
 }

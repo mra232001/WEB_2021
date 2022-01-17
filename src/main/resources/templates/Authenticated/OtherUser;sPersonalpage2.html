@@ -105,7 +105,7 @@
         <div th:each="routine:${user.routineList}"  >
             <div>
                 <div class="uk-card uk-card-hover uk-card-default">
-                    <a class="uk-link-reset" th:href="@{/routine/}  + ${routine.id}">
+                    <a class="uk-link-reset" th:href="@{/routine/(id=${routine.id})}">
                         <div class="uk-padding-small">
                             <dl class="uk-description-list">
                                 <div class="uk-text-bold uk-text-large uk-text-muted">

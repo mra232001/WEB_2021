@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns: th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <link rel="stylesheet" href="../static/make-color/css/uikit.min.css" />
-    <script src="../static/make-color/js/uikit.min.js"></script>
-    <script src="../static/make-color/js/uikit-icons.min.js"></script>
+    <link th:href="@{/make-color/css/uikit.min.css}" rel="stylesheet" />
+    <script th:src="@{/make-color/js/uikit.min.js}"></script>
+    <script th:src="@{/make-color/js/uikit-icons.min.js}"></script>
     <title>Home</title>
     <meta charset="utf-8">
     <style>
@@ -27,7 +27,7 @@
             color: #666 !important
         }
         body {
-
+            background-color: rgba(170,170,170,0.5);
         }
 
     </style>
@@ -38,43 +38,40 @@
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-left uk-margin-large-left">
 
-                <a href="/home/" class="uk-navbar-item uk-logo">StrongFit</a>
+                <a th:href="@{/main}" class="uk-navbar-item uk-logo">StrongFit</a>
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
-                        <li><a href="/product/">Profiles</a></li>
-                        <li><a href="/us/">List exercises</a></li>
-                        <li><a href="/notification">Notifications </a></li>
+                        <li><a th:href="@{/profile/(userId=${session.user.id})}">Profiles</a></li>
+                        <li><a th:href="@{/main/list_exercises}">List exercises</a></li>
+                        <li><a th:href="@{/main/notification}">Notifications </a></li>
                     </ul>
                 </div>
 
                 <div class="uk-margin">
-                    <form class="uk-search uk-search-default">
-                        <a href="" uk-search-icon></a>
-                        <input class="uk-search-input" type="search" placeholder="Search">
+                    <form class="uk-search uk-search-default uk-form-horizontal" action ="#" th:action="@{/main/search}" >
+                        <p></p>
+                        <input class="uk-search-input " type="text" th:value="${input}" name = "input" placeholder="Search">
+                        <p></p>
+                        <label><input class="uk-radio" value="Person" name = "Type" type="radio" checked ="checked">Person</label>
+                        <label><input class="uk-radio" value ="Routine" type="radio" name="Type"> Routine</label>
                     </form>
-                </div>
-
-                <div class="uk-margin-small-left uk-grid-small uk-child-width-auto uk-grid ">
-                    <label><input class="uk-radio" type="radio" name="radio2" checked> Person</label>
-                    <label><input class="uk-radio" type="radio" name="radio2"> Routine</label>
                 </div>
 
             </div>
 
             <div class="uk-navbar-right uk-margin-large-right">
                 <div>
-                    <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove" href="/login/">
-                        <button class="uk-button uk-button-primary">Log out</button>
-                    </a>
+                    <form th:action="@{/logout}" method="POST">
+                        <input type="submit" value = "logout" class="uk-button uk-button-primary"/>
+                    </form>
                 </div>
+
             </div>
-
-
         </nav>
     </div>
 
-    <div class="uk-container uk-margin-large">
+    <div class="uk-container uk-margin-large" th:object="${routine}">
 
         <div>
             <div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
@@ -82,7 +79,7 @@
                     <div class="uk-position-relative" tabindex="-1"
                          uk-slideshow=" min-height: 600; animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
                         <li>
-                            <img src = "Images/img_5.png">
+                            <img th:src="@{*{urlImage}}">
                         </li>
                     </div>
                 </div>
@@ -91,12 +88,12 @@
                         <div class="uk-margin-auto-right uk-width-3-5">
                             <dl class="uk-description-list">
                                 <div class="uk-text-bold uk-text-large uk-text-muted">
-                                    <dt>Home workout</dt>
+                                    <dt th:text="*{name}"></dt>
                                 </div>
                                 <div class="uk-text-small uk-text-muted">
-                                    <dd>Time: 1h18min</dd>
-                                    <dd>Volumn: 3,461kg</dd>
-                                    <dd><a href ="/userxx/">By UserTemp1</a></dd>
+                                    <dd><p th:text="'Time: ' + *{duration}"></p></dd>
+                                    <dd><p th:text="'Volumn: ' + *{volumn}"></p></dd>
+                                    <dd><a th:href="@{/profile(userId=${routine.owner.id})}"  th:text="'By '+ *{owner.username} "></a></dd>
                                 </div>
                             </dl>
                         </div>
@@ -138,37 +135,37 @@
                     </table>
 
                     <div class = uk-margin-small-top>
-                        <p> 25 people like this post</p>
-                        <p> 0 comment</p>
+                        <p th:text="${LikeNumber} ?: '0' + ' people like this post'"></p>
+                        <p th:text="${CommentNumber} ?: '0' + ' comments'"></p>
                     </div>
 
                     <div class="uk-margin-small-top">
                         <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
                         <a class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5" ></a>
-                        <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
-
+                        <a th:if="${session.user.id} != ${ID}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                        <a th:unless="${session.user.id} != ${ID}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
                     </div>
 
                     <div class ="uk-container ">
                         <table class="uk-table uk-table-divider">
-                        <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Comment</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>UserTemp5</td>
-                            <td>
-                                Impressive
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>UserTemp2</td>
-                            <td>Nice one!</td>
-                        </tr>
-                        </tbody>
+                            <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Comment</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>UserTemp5</td>
+                                <td>
+                                    Impressive
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>UserTemp2</td>
+                                <td>Nice one!</td>
+                            </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

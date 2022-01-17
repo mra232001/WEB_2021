@@ -5,6 +5,7 @@ import com.example.web.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,10 +16,11 @@ public class RoutineController {
     @Autowired
     public MainService mainService;
 
+    @GetMapping("/")
     public String getSpecificRoutine(@RequestParam("id") int Id,
                                      Model model) {
-        Routine routine = mainService.routineRepository.getById(Id);
+        Routine routine = mainService.findRoutinebyId(Id);
         model.addAttribute("routine", routine);
-        return "Authenticated/MySpecificRoutine";
+        return "Authenticated/SpecificRoutine";
     }
 }

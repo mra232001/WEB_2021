@@ -34,6 +34,17 @@ public class Routine {
     @Column(name = "comment_number")
     int CommentNumber;
 
+    @Column(name = "image")
+    private String urlImage;
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST})
     @JoinColumn(name = "id_owner")
     private User owner;
