@@ -17,7 +17,7 @@ public class RoutineController {
 
     public String getSpecificRoutine(@RequestParam("id") int Id,
                                      Model model) {
-        Routine routine = mainService.findRoutineById(Id);
+        Routine routine = mainService.routineRepository.getById(Id);
         model.addAttribute("routine", routine);
         return "Authenticated/MySpecificRoutine";
     }

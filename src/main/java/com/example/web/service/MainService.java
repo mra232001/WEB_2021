@@ -35,8 +35,8 @@ public class MainService  {
         this.userRepository = userRepository;
     }
 
-    public User findUserById(int id){
-        return userRepository.getById(id);
+    public List<User> findUserById(int id){
+        return userRepository.findUsersById(id);
     }
 
 
@@ -54,11 +54,11 @@ public class MainService  {
         return exerciseRepository.getById(id);
     }
 
-    public User findUserbyUsername(String username){
-        return userRepository.findByUsername(username);
+    public List<User> findUserbyUsername(String username){
+        return userRepository.findUsersByUsername(username);
     }
 
-    public Routine findRoutineById(int id){
-        return routineRepository.getById(id);
+    public List<Routine> findRoutineById(int id){
+        return routineRepository.findRoutineById(id);
     }
 }

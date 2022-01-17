@@ -12,4 +12,5 @@ public interface RoutineRepository extends JpaRepository<Routine,Integer> {
 
     public List<Routine> findRoutineByName(String name);
 
+    public List<Routine> findRoutineById(int id);
 }

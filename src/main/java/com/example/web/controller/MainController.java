@@ -44,22 +44,20 @@ public class MainController {
         if(IsId(input)){
             int inputId = ConvertStringToInt(input);
             if(type.equals("Person")){
-                User user = mainService.findUserById(inputId);
-                List<User> users = new ArrayList<>();
-                user.setId(inputId);
-                users.add(user);
-                theModel.addAttribute("users",user);
+                List<User> users = mainService.findUserById(inputId);
+                theModel.addAttribute("users",users);
                 return "Authenticated/ResultOfFilter";
             } else{
                 List<Routine> routineList = new ArrayList<>();
-                Routine routine = mainService.findRoutineById(inputId);
-                routineList.add(routine);
+                routineList = mainService.findRoutineById(inputId);
                 theModel.addAttribute("routines",routineList);
                 return "Authenticated/ResultofFilter2";
             }
 
         } else {
             if(type.equals("Person")){
+                List<User> userList = mainService.findUserbyUsername(input);
+                theModel.addAttribute("users",userList);
                 return "Authenticated/ResultOfFilter";
             } else {
                 List<Routine> routineList = new ArrayList<>();
