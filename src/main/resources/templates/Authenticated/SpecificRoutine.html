@@ -39,7 +39,7 @@
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-left uk-margin-large-left">
 
-                <a th:href="@{/main}" class="uk-navbar-item uk-logo">StrongFit</a>
+                <a th:href="@{/main/(user=${session.user.id})}" class="uk-navbar-item uk-logo">StrongFit</a>
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
@@ -140,8 +140,9 @@
                         <p th:text = "${routine.commentNumber} + ${' comments'}"></p>
                     </div>
 
-                    <div class="uk-margin-small-top">
-                        <a id="heart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" onclick="change_color()" th:href="@{/routine/like(user = ${session.user.id},routine=${routine.id})}"></a>
+                    <div class="uk-margin-small-top" th:object="${user}">
+                        <a id="heart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:unless="${user.likedRoutine.contains(routine) }"  th:href="@{/routine/like(user = ${session.user.id},routine=${routine.id})}" ></a>
+                        <a id="unheart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:if="${user.likedRoutine.contains(routine) }"  th:href="@{/routine/unlike(user = ${session.user.id},routine=${routine.id})}" th:style="'color:pink'"></a>
                         <a class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5" onclick="show_hide()" ></a>
                         <a th:if="${session.user.id} != ${routine.owner.id}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
                         <a th:unless="${session.user.id} != ${routine.owner.id}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>

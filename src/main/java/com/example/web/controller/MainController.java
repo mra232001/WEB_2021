@@ -25,7 +25,10 @@ public class MainController {
     }
 
     @RequestMapping("")
-    public String main_page(Model model){
+    public String main_page(@RequestParam("user")int id,
+                                        Model model){
+        User user = mainService.findUserbyId(id);
+        model.addAttribute("user",user);
         return "Authenticated/Home_page";
     }
 

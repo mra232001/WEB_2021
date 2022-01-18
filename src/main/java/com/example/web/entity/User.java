@@ -48,8 +48,8 @@ public class User {
     @Column(name = "sex")
     public String sex;
 
-    @ManyToMany
-    @JoinTable(name = "routine_like",schema = "webproject",
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name = "routine_like",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "routine_id"))
      private List<Routine> likedRoutine;
@@ -65,17 +65,11 @@ public class User {
     public void like_Routine(Routine routine){
         if(likedRoutine == null) likedRoutine = new ArrayList<>();
         likedRoutine.add(routine);
-        System.out.println(routine.getLikeNumber());
-        routine.addLike(this);
-        System.out.println(routine.getLikeNumber());
     }
 
     public void unlike_routine(Routine routine){
         if(likedRoutine == null) throw new EntityNotFoundException();
         likedRoutine.remove(routine);
-        int op = routine.getLikeNumber();
-        op--;
-        routine.setLikeNumber(op);
     }
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",

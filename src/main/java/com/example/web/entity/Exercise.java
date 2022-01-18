@@ -3,6 +3,7 @@ package com.example.web.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
 public class Exercise {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
@@ -25,6 +26,7 @@ public class Exercise {
     public String equipment;
 
     @Column(name = "detail")
+    @Size(max =1000)
     public String DetailDescription;
 
     @Column(name = "image")

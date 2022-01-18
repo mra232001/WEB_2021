@@ -54,16 +54,19 @@ public class Routine {
         this.like = likes;
     }
 
-    @ManyToMany
-    @JoinTable(name = "routine_like",schema = "webproject",
-            joinColumns = @JoinColumn(name = "routine_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(mappedBy = "likedRoutine")
     private List<User> like;
 
     public void addLike(User user){
         if(like == null) like = new ArrayList<>();
         like.add(user);
         LikeNumber++;
+    }
+
+    public void unLike(User user){
+        if(like == null) throw new EntityNotFoundException();
+        like.remove(user);
+        LikeNumber--;
     }
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST})
@@ -184,14 +187,4 @@ public class Routine {
         this.owner = routine.owner;
     }
 
-    public List<Role> getRole() {
-        return role;
-    }
-
-    public void setRole(List<Role> role) {
-        this.role = role;
-    }
-
-    @ManyToMany(mappedBy = "routine")
-    List <Role> role = new ArrayList<>();
 }

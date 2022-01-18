@@ -36,7 +36,7 @@
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-left uk-margin-large-left">
 
-                <a th:href="@{/main}" class="uk-navbar-item uk-logo">StrongFit</a>
+                <a th:href="@{/main/(user=${session.user.id})}" class="uk-navbar-item uk-logo">StrongFit</a>
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
@@ -110,7 +110,7 @@
         <div th:each="routine:${user.routineList}"  >
             <div>
                 <div class="uk-card uk-card-hover uk-card-default">
-                    <a class="uk-link-reset" th:href="@{/routine/(id=${routine.id})}">
+                    <a class="uk-link-reset" th:href="@{/routine/(id=${routine.id},ses=${session.user.id})}">
                         <div class="uk-padding-small">
                             <dl class="uk-description-list">
                                 <div class="uk-text-bold uk-text-large uk-text-muted">

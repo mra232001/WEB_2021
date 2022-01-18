@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "linkusers",schema = "webproject")
+@Table(name = "linkusers")
 public class LinkUsers {
 
 

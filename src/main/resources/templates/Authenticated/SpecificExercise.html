@@ -43,7 +43,7 @@
     <nav class="uk-navbar-container uk-visible@s" uk-navbar>
       <div class="uk-navbar-left uk-margin-large-left">
 
-        <a th:href="@{/main}" class="uk-navbar-item uk-logo">StrongFit</a>
+        <a th:href="@{/main/(user=${session.user.id})}" class="uk-navbar-item uk-logo">StrongFit</a>
 
         <div class="uk-margin-large-left uk-margin-large-right">
           <ul class="uk-navbar-nav">

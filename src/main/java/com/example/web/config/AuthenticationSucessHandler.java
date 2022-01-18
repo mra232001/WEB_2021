@@ -31,6 +31,6 @@ public class AuthenticationSucessHandler implements AuthenticationSuccessHandler
         httpSession.setAttribute("user",user);
 
         //Send response
-        response.sendRedirect(request.getContextPath() + "/main");
+        response.sendRedirect(request.getContextPath() + "/main/?user=" + user.getId());
     }
 }
