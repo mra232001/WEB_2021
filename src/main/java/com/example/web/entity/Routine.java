@@ -45,6 +45,26 @@ public class Routine {
         this.urlImage = urlImage;
     }
 
+    public List<User> getLikes() {
+        return like;
+    }
+
+    public void setLikes(List<User> likes) {
+        this.like = likes;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "routine_like",schema = "webproject",
+            joinColumns = @JoinColumn(name = "routine_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> like;
+
+    public void addLike(User user){
+        if(like == null) like = new ArrayList<>();
+        like.add(user);
+        LikeNumber++;
+    }
+
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST})
     @JoinColumn(name = "id_owner")
     private User owner;

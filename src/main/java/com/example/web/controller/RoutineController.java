@@ -36,9 +36,11 @@ public class RoutineController {
     }
 
     @GetMapping("/like")
-    public String Like(@ModelAttribute("routine") Routine routine,
+    public String Like(@RequestParam("routine") int idRoutine,
+                       @RequestParam("user") int id,
                        Model model){
-        routine.setLikeNumber(routine.getLikeNumber() + 1);
+        Routine routine = mainService.findRoutinebyId(idRoutine);
+        mainService.findUserbyId(id).like_Routine(routine);
         model.addAttribute("routine",routine);
         return "redirect:/routine/?id=" +routine.getId();
     }

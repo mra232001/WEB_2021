@@ -122,4 +122,10 @@ create table linkusers(
     primary key (id)
 );
 
-delete from linkusers where id = 1;
+create table routine_like(
+    routine_id int not null ,
+    user_id int not null    ,
+    primary key (routine_id,user_id),
+    constraint fk_routine foreign key (routine_id) references routine(id),
+    constraint fk_user foreign key (user_id) references users(id)
+)
