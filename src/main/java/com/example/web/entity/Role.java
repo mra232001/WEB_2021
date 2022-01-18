@@ -1,6 +1,8 @@
 package com.example.web.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "role")
@@ -41,5 +43,17 @@ public class Role {
     public String toString() {
         return "Role{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
+
+    public List<Routine> getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(List<Routine> routine) {
+        this.routine = routine;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "role_routine", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "routine_id"))
+    List<Routine> routine = new ArrayList<>();
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.lang.reflect.Array;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -69,15 +70,12 @@ public class Routine {
     @JoinColumn(name = "id_owner")
     private User owner;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(name = "routineexercise",
-    joinColumns = @JoinColumn(name = "id_routine"),
-    inverseJoinColumns = @JoinColumn(name = "id_exercise"))
-    private List<Exercise> exerciseList;
+    @ManyToMany(mappedBy = "routine")
+    private Set<Exercise> exerciseList = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "routine",
             cascade = CascadeType.ALL)
-    public List<Comment> commentList;
+    public List<Comment> commentList = new ArrayList<>();
 
     public List<Comment> getCommentList() {
         return commentList;
@@ -94,17 +92,17 @@ public class Routine {
         comment.setRoutine(this);
     }
 
-    public List<Exercise> getExerciseList() {
+    public Set<Exercise> getExerciseList() {
         return exerciseList;
     }
 
-    public void setExerciseList(List<Exercise> exerciseList) {
+    public void setExerciseList(Set<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
     }
 
     public void addExercise(Exercise exercise){
         if(exerciseList == null){
-            exerciseList = new ArrayList<>();
+            exerciseList = new HashSet<>();
         }
         exerciseList.add(exercise);
 
@@ -186,4 +184,14 @@ public class Routine {
         this.owner = routine.owner;
     }
 
+    public List<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Role> role) {
+        this.role = role;
+    }
+
+    @ManyToMany(mappedBy = "routine")
+    List <Role> role = new ArrayList<>();
 }
