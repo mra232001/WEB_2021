@@ -19,10 +19,13 @@ public class ProfileController {
 
     @GetMapping("")
     public String ShowProfile(@RequestParam("userId") int Id,
-                              Model model){
+                              Model model,
+                              @RequestParam("ses") int idSes){
+        User Sessionuser = mainService.findUserbyId(idSes);
         User user = mainService.findUserbyId(Id);
         model.addAttribute("user",user);
         model.addAttribute("ID",Id);
+        model.addAttribute("sesUser",Sessionuser);
         return "Authenticated/OtherUser;sPersonalpage2";
     }
 
@@ -38,7 +41,6 @@ public class ProfileController {
     public String SaveProfile(@ModelAttribute("user") User user
                               ){
         mainService.saveUser(user);
-
-        return "redirect:/profile/?userId=" + user.getId();
+        return "redirect:/profile/?userId=" + user.getId()+"&ses="+user.getId();
     }
 }

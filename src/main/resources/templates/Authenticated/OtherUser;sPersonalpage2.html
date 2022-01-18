@@ -36,11 +36,11 @@
         <nav class="uk-navbar-container uk-visible@s" uk-navbar>
             <div class="uk-navbar-left uk-margin-large-left">
 
-                <a th:href="@{/main/(user=${session.user.id})}" class="uk-navbar-item uk-logo">StrongFit</a>
+                <a th:href="@{/main/(user=${session.user.id},ses=${session.user.id})}" class="uk-navbar-item uk-logo">StrongFit</a>
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
-                        <li><a th:href="@{/profile/(userId=${session.user.id})}">Profiles</a></li>
+                        <li><a th:href="@{/profile/(userId=${session.user.id},ses=${session.user.id})}">Profiles</a></li>
                         <li><a th:href="@{/main/list_exercises}">List exercises</a></li>
                         <li><a th:href="@{/main/notification}">Notifications </a></li>
                     </ul>
@@ -88,9 +88,9 @@
 
             <div uk-alert th:text="'Bio : ' + ${user.bio}"></div>
 
-            <div class="uk-button" >
-                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID} and ${session.user.linkUsersList}" th:href = "@{/main/follow(from=${session.user.id},to=${ID})}">Follow </a>
-                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID}" th:href = "@{/main/unfollow(from=${session.user.id},to=${ID})}">Unfollow </a>
+            <div class="uk-button" th:object="${sesUser}">
+                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID} and ${!sesUser.following.contains(user)}" th:href = "@{/main/follow(from=${session.user.id},to=${ID})}">Follow </a>
+                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID} and ${sesUser.following.contains(user)}" th:href = "@{/main/unfollow(from=${session.user.id},to=${ID})}">Unfollow </a>
                 <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/profile/configure(id=${session.user.id})}" >Configure </a>
             </div>
 

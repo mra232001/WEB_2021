@@ -1,6 +1,5 @@
 package com.example.web.entity;
 
-import com.example.web.more.LinkUsers;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -76,23 +75,6 @@ public class User {
     cascade = CascadeType.ALL)
     public List<Routine> routineList;
 
-    @OneToMany(mappedBy = "follower",
-            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    private List<LinkUsers> linkUsersList;
-
-    public List<LinkUsers> getLinkUsersList() {
-        return linkUsersList;
-    }
-
-    public void setLinkUsersList(List<LinkUsers> linkUsersList) {
-        this.linkUsersList = linkUsersList;
-    }
-
-    public void addLinkUsers(LinkUsers linkUsers){
-        if(this.linkUsersList == null) this.linkUsersList = new ArrayList<>();
-        this.linkUsersList.add(linkUsers);
-    }
-
     public int getQuantityroutine() {
         return quantityroutine;
     }
@@ -123,6 +105,52 @@ public class User {
 
     public void setRoutineList(List<Routine> routineList) {
         this.routineList = routineList;
+    }
+
+    @ManyToMany(mappedBy = "following", cascade = CascadeType.ALL)
+    private List<User> followers = new ArrayList<>();
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    public List<User> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<User> following) {
+        this.following = following;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="UserRel",
+            joinColumns={@JoinColumn(name="UserId")},
+            inverseJoinColumns={@JoinColumn(name="ParentId")})
+    private List<User> following = new ArrayList<>();
+
+
+    public void follow(User user){
+        following.add(user);
+        quantityfollowed++;
+    }
+
+    public void befollowed(User user){
+        followers.add(user);
+        quantityfollower++;
+    }
+
+    public void unfollow(User user){
+        following.remove(user);
+        quantityfollowed--;
+    }
+
+    public void beUnfollow(User user){
+        followers.remove(user);
+        quantityfollower--;
     }
 
     public User(){

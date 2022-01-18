@@ -40,7 +40,7 @@
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
-                        <li><a th:href="@{/profile/(userId=${session.user.id})}">Profiles</a></li>
+                        <li><a th:href="@{/profile/(userId=${session.user.id},ses=${session.user.id})}">Profiles</a></li>
                         <li><a th:href="@{/main/list_exercises}">List exercises</a></li>
                         <li><a th:href="@{/main/notification}">Notifications </a></li>
                     </ul>
@@ -89,7 +89,7 @@
                     <td th:text="${routine.name} ?: 'No Result'" />
                     <td th:text="${routine.owner.username} ?: 'No result'"/>
                 <td>
-                    <a th:href = "@{/profile(userId=${routine.owner.id})}" class="uk-button">
+                    <a th:href = "@{/profile(userId=${routine.owner.id},ses=${session.user.id})}" class="uk-button">
                         Owner
                     </a>
                 </td>

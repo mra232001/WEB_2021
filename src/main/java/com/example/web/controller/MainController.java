@@ -3,7 +3,6 @@ package com.example.web.controller;
 import com.example.web.entity.Exercise;
 import com.example.web.entity.Routine;
 import com.example.web.entity.User;
-import com.example.web.more.LinkUsers;
 import com.example.web.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -104,9 +103,10 @@ public class MainController {
     ){
         User Follower = mainService.findUserbyId(idfrom);
         User Followed = mainService.findUserbyId(idTo);
-        LinkUsers linkUsers = new LinkUsers(Follower,Followed);
-        mainService.SaveLink(linkUsers);
-        return "redirect:/profile/?userId=" + idTo;
+        Follower.follow(Followed);
+        Followed.befollowed(Follower);
+        mainService.addNewFollow(Follower,Followed);
+        return "redirect:/profile/?userId=" + idTo +"&ses="+ idfrom;
     }
 
     @GetMapping("/unfollow")
@@ -114,8 +114,9 @@ public class MainController {
                                @RequestParam("to") int idTo){
         User Follower = mainService.findUserbyId(idfrom);
         User Followed = mainService.findUserbyId(idTo);
-        LinkUsers linkUsers = new LinkUsers(Follower,Followed);
-        mainService.deleteLink(linkUsers);
-        return "redirect:/profile/?userId=" + idTo;
+        Follower.unfollow(Followed);
+        Followed.beUnfollow(Follower);
+        mainService.addNewFollow(Follower,Followed);
+        return "redirect:/profile/?userId=" + idTo +"&ses="+ idfrom;
     }
 }

@@ -43,7 +43,7 @@
 
                 <div class="uk-margin-large-left uk-margin-large-right">
                     <ul class="uk-navbar-nav">
-                        <li><a th:href="@{/profile/(userId=${session.user.id})}">Profiles</a></li>
+                        <li><a th:href="@{/profile/(userId=${session.user.id},ses=${session.user.id})}">Profiles</a></li>
                         <li><a th:href="@{/main/list_exercises}">List exercises</a></li>
                         <li><a th:href="@{/main/notification}">Notifications </a></li>
                     </ul>
@@ -94,7 +94,7 @@
                                 <div class="uk-text-small uk-text-muted">
                                     <dd><p th:text="'Time: ' + *{duration}"></p></dd>
                                     <dd><p th:text="'Volumn: ' + *{volumn}"></p></dd>
-                                    <dd><a th:href="@{/profile(userId=${routine.owner.id})}"  th:text="'By '+ *{owner.username} "></a></dd>
+                                    <dd><a th:href="@{/profile(userId=${routine.owner.id},ses=${session.user.id})}"  th:text="'By '+ *{owner.username} "></a></dd>
                                 </div>
                             </dl>
                         </div>

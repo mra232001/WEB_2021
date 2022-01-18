@@ -3,16 +3,12 @@ package com.example.web.service;
 import com.example.web.entity.Exercise;
 import com.example.web.entity.Routine;
 import com.example.web.entity.User;
-import com.example.web.more.LinkUsers;
 import com.example.web.repository.ExerciseRepository;
-import com.example.web.repository.LinkUsersReposiory;
 import com.example.web.repository.RoutineRepository;
 import com.example.web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.PostLoad;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +23,6 @@ public class MainService  {
 
     @Autowired
     public ExerciseRepository exerciseRepository;
-
-    @Autowired
-    public LinkUsersReposiory linkUsersReposiory;
 
     public MainService(){
 
@@ -99,12 +92,9 @@ public class MainService  {
         return routine;
     }
 
-    public void deleteLink(LinkUsers linkUsers){
-        LinkUsers foundLink = linkUsersReposiory.findLinkUsersByFollowerAndFollowed(linkUsers.getFollower(), linkUsers.getFollowed());
-        linkUsersReposiory.delete(foundLink);
+    public void addNewFollow(User follower, User followed){
+        userRepository.save(followed);
+        userRepository.save(follower);
     }
 
-    public void SaveLink(LinkUsers linkUsers){
-        linkUsersReposiory.save(linkUsers);
-    }
 }
