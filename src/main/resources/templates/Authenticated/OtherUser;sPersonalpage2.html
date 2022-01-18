@@ -89,7 +89,8 @@
             <div uk-alert th:text="'Bio : ' + ${user.bio}"></div>
 
             <div class="uk-button" >
-                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID}" th:href = "@{/main/follow(from=${session.user.id},to=${ID})}" method ="post">Follow </a>
+                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID} and ${session.user.linkUsersList}" th:href = "@{/main/follow(from=${session.user.id},to=${ID})}">Follow </a>
+                <a class = "uk-button uk-button-primary" th:if="${session.user.id} != ${ID}" th:href = "@{/main/unfollow(from=${session.user.id},to=${ID})}">Unfollow </a>
                 <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/profile/configure(id=${session.user.id})}" >Configure </a>
             </div>
 

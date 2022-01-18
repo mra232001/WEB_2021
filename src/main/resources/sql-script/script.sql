@@ -122,4 +122,4 @@ create table linkusers(
     primary key (id)
 );
 
-delete from comment where id = 23;
+delete from linkusers where id = 1;

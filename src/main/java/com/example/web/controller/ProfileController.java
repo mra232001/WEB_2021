@@ -20,7 +20,7 @@ public class ProfileController {
     @GetMapping("")
     public String ShowProfile(@RequestParam("userId") int Id,
                               Model model){
-        User user = mainService.userRepository.getById(Id);
+        User user = mainService.findUserbyId(Id);
         model.addAttribute("user",user);
         model.addAttribute("ID",Id);
         return "Authenticated/OtherUser;sPersonalpage2";

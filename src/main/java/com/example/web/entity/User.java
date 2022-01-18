@@ -51,8 +51,8 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",
     cascade = CascadeType.ALL)
     public List<Routine> routineList;
-/*
-    @OneToMany(mappedBy = "id_follower",
+
+    @OneToMany(mappedBy = "follower",
             cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private List<LinkUsers> linkUsersList;
 
@@ -68,7 +68,6 @@ public class User {
         if(this.linkUsersList == null) this.linkUsersList = new ArrayList<>();
         this.linkUsersList.add(linkUsers);
     }
-*/
 
     public int getQuantityroutine() {
         return quantityroutine;

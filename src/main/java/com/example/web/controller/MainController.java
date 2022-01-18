@@ -95,15 +95,24 @@ public class MainController {
         return result;
     }
 
-    @PostMapping("/follow")
+    @GetMapping("/follow")
     public String followUser(@RequestParam("from") int idfrom,
-                             @RequestParam("to") int idTo,
-                             @ModelAttribute("user") User user
+                             @RequestParam("to") int idTo
     ){
         User Follower = mainService.findUserbyId(idfrom);
         User Followed = mainService.findUserbyId(idTo);
         LinkUsers linkUsers = new LinkUsers(Follower,Followed);
         mainService.SaveLink(linkUsers);
-        return "redirect:/profile/?userId=" + user.getId();
+        return "redirect:/profile/?userId=" + idTo;
+    }
+
+    @GetMapping("/unfollow")
+    public String unfollowUser(@RequestParam("from") int idfrom,
+                               @RequestParam("to") int idTo){
+        User Follower = mainService.findUserbyId(idfrom);
+        User Followed = mainService.findUserbyId(idTo);
+        LinkUsers linkUsers = new LinkUsers(Follower,Followed);
+        mainService.deleteLink(linkUsers);
+        return "redirect:/profile/?userId=" + idTo;
     }
 }

@@ -143,8 +143,8 @@
                     <div class="uk-margin-small-top">
                         <a id="heart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" onclick="change_color()" th:action="@{/routine/like}"></a>
                         <a class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5" onclick="show_hide()" ></a>
-                        <a th:if="${session.user.id} != ${owner.id}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
-                        <a th:unless="${session.user.id} != ${owner.id}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
+                        <a th:if="${session.user.id} != ${routine.owner.id}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                        <a th:unless="${session.user.id} != ${routine.owner.id}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
                     </div>
 
                     <div class ="uk-container " id="container_comment">

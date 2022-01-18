@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "linkuser")
+@Table(name = "linkusers",schema = "webproject")
 public class LinkUsers {
 
 
@@ -16,13 +16,17 @@ public class LinkUsers {
     @Column(name = "id")
     private int id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_follower")
     private User follower;
 
     @OneToOne
     @JoinColumn(name = "id_followed")
     private User followed;
+
+    public LinkUsers() {
+
+    }
 
     public int getId() {
         return id;
@@ -45,11 +49,11 @@ public class LinkUsers {
         this.follower = follower;
     }
 
-    public User getId_followed() {
+    public User getFollowed() {
         return followed;
     }
 
-    public void setId_followed(User id_followed) {
+    public void setFollowed(User id_followed) {
         this.followed = id_followed;
     }
 }

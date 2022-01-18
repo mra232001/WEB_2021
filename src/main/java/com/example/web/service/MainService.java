@@ -99,6 +99,11 @@ public class MainService  {
         return routine;
     }
 
+    public void deleteLink(LinkUsers linkUsers){
+        LinkUsers foundLink = linkUsersReposiory.findLinkUsersByFollowerAndFollowed(linkUsers.getFollower(), linkUsers.getFollowed());
+        linkUsersReposiory.delete(foundLink);
+    }
+
     public void SaveLink(LinkUsers linkUsers){
         linkUsersReposiory.save(linkUsers);
     }
