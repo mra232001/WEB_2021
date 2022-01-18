@@ -3,7 +3,9 @@ package com.example.web.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "exercise")
@@ -54,16 +56,18 @@ public class Exercise {
         DetailDescription = detailDescription;
     }
 
-    public List<Routine> getRoutineListBeOwnedBy() {
-        return routineListBeOwnedBy;
+
+    public Set<Routine> getRoutine() {
+        return routine;
     }
 
-    public void setRoutineListBeOwnedBy(List<Routine> routineListBeOwnedBy) {
-        this.routineListBeOwnedBy = routineListBeOwnedBy;
+    public void setRoutine(Set<Routine> routine) {
+        this.routine = routine;
     }
 
-    @ManyToMany(mappedBy = "exerciseList")
-    private List<Routine> routineListBeOwnedBy;
+    @ManyToMany
+    @JoinTable(name = "routine_exercise", joinColumns = @JoinColumn(name = "id_exercise"), inverseJoinColumns = @JoinColumn(name = "id_routine"))
+    private Set<Routine> routine = new HashSet<>();
 
     public int getId() {
         return id;
