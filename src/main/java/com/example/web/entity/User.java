@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "users",schema = "webproject")
+@Table(name = "users")
 @Transactional
 public class User {
 
