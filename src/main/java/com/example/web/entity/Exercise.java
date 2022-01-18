@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "exercise",schema ="webproject")
+@Table(name = "exercise")
 public class Exercise {
 
     @Id
@@ -62,10 +62,7 @@ public class Exercise {
         this.routineListBeOwnedBy = routineListBeOwnedBy;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(name = "routine_exercise",
-            joinColumns = @JoinColumn(name = "id_exercise"),
-            inverseJoinColumns = @JoinColumn(name = "id_routine"))
+    @ManyToMany(mappedBy = "exerciseList")
     private List<Routine> routineListBeOwnedBy;
 
     public int getId() {

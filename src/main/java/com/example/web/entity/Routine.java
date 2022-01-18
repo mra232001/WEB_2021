@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "routine",schema = "webproject")
+@Table(name = "routine")
 @Transactional
 public class Routine {
 
@@ -70,7 +70,7 @@ public class Routine {
     private User owner;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(name = "routine_exercise",
+    @JoinTable(name = "routineexercise",
     joinColumns = @JoinColumn(name = "id_routine"),
     inverseJoinColumns = @JoinColumn(name = "id_exercise"))
     private List<Exercise> exerciseList;
