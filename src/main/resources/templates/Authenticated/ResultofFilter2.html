@@ -42,7 +42,7 @@
                     <ul class="uk-navbar-nav">
                         <li><a th:href="@{/profile/(userId=${session.user.id},ses=${session.user.id})}">Profiles</a></li>
                         <li><a th:href="@{/main/list_exercises}">List exercises</a></li>
-                        <li><a th:href="@{/main/notification}">Notifications </a></li>
+                        <li><a th:href="@{/main/notification(ses = ${session.user.id})}">Notifications </a></li>
                     </ul>
                 </div>
 

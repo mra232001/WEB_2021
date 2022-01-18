@@ -44,16 +44,5 @@ public class Role {
         return "Role{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 
-    public List<Routine> getRoutine() {
-        return routine;
-    }
-
-    public void setRoutine(List<Routine> routine) {
-        this.routine = routine;
-    }
-
-    @ManyToMany
-    @JoinTable(name = "role_routine", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "routine_id"))
-    List<Routine> routine = new ArrayList<>();
 
 }

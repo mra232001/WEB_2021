@@ -106,6 +106,7 @@ public class MainController {
         Follower.follow(Followed);
         Followed.befollowed(Follower);
         mainService.addNewFollow(Follower,Followed);
+        mainService.saveNewNotification(Follower,1,Followed);
         return "redirect:/profile/?userId=" + idTo +"&ses="+ idfrom;
     }
 
@@ -118,5 +119,13 @@ public class MainController {
         Followed.beUnfollow(Follower);
         mainService.addNewFollow(Follower,Followed);
         return "redirect:/profile/?userId=" + idTo +"&ses="+ idfrom;
+    }
+
+    @GetMapping("/notification")
+    public String showNoti(@RequestParam("ses") int idSes,
+                           Model model){
+        User sesUser = mainService.findUserbyId(idSes);
+        model.addAttribute("sesUser",sesUser);
+        return "Authenticated/Notification";
     }
 }

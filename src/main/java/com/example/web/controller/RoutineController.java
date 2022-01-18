@@ -48,6 +48,7 @@ public class RoutineController {
         foundUser.like_Routine(routine);
         routine.addLike(mainService.findUserbyId(id));
         routineService.addLike(foundUser,routine);
+        mainService.saveNewNotification(foundUser,2,routine);
         model.addAttribute("routine",routine);
         return "redirect:/routine/?id=" +routine.getId()+"&ses="+id;
     }
@@ -73,6 +74,7 @@ public class RoutineController {
         comment.setWriter(mainService.findUserbyId(id));
         routine.addComment(comment);
         routineService.addComment(comment);
-        return "redirect:/routine/?id=" +comment.getRoutine().getId();
+        mainService.saveNewNotification(mainService.findUserbyId(id),3,routine);
+        return "redirect:/routine/?id=" +comment.getRoutine().getId()+"&ses=" +id;
     }
 }

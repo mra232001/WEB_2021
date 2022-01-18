@@ -47,7 +47,7 @@ public class User {
     @Column(name = "sex")
     public String sex;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "routine_like",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "routine_id"))
@@ -74,6 +74,22 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",
     cascade = CascadeType.ALL)
     public List<Routine> routineList;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "receiver")
+    private List<Notification> notifications;
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public void addNewNoti(Notification notification){
+        if(notifications == null) notifications = new ArrayList<>();
+        notifications.add(notification);
+    }
 
     public int getQuantityroutine() {
         return quantityroutine;

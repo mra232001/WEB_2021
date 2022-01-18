@@ -1,9 +1,11 @@
 package com.example.web.service;
 
 import com.example.web.entity.Exercise;
+import com.example.web.entity.Notification;
 import com.example.web.entity.Routine;
 import com.example.web.entity.User;
 import com.example.web.repository.ExerciseRepository;
+import com.example.web.repository.NotificationRepository;
 import com.example.web.repository.RoutineRepository;
 import com.example.web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class MainService  {
 
     @Autowired
     public ExerciseRepository exerciseRepository;
+
+    @Autowired
+    public NotificationRepository notificationRepository;
 
     public MainService(){
 
@@ -95,6 +100,31 @@ public class MainService  {
     public void addNewFollow(User follower, User followed){
         userRepository.save(followed);
         userRepository.save(follower);
+    }
+
+    public void saveNewNotification(User writer,int type, Object targer){
+        Notification notification = new Notification();
+        notification.setWriter(writer);
+        notification.setType(type);
+        if(type == 1){
+            String description = writer.getUsername()+ " has followed you";
+            notification.setDescription(description);
+            notification.setReceiver((User) targer);
+        } else {
+            if(type == 2){
+                String description = writer.getUsername()+ " has liked your post";
+                notification.setDescription(description);
+                notification.setRoutine((Routine) targer);
+                notification.setReceiver( ((Routine) targer).getOwner());
+            } else {
+                String description = writer.getUsername()+ " has commented on your post";
+                notification.setDescription(description);
+                notification.setRoutine((Routine) targer);
+                notification.setReceiver( ((Routine) targer).getOwner());
+            }
+        }
+        notification.getReceiver().addNewNoti(notification);
+        notificationRepository.save(notification);
     }
 
 }
