@@ -74,6 +74,12 @@
 
   <form action="#" th:action="@{/routine/create(id=${session.user.id})}" th:object="${routine}" method="post">
   Name of routine <input type="text" th:field = "*{name}">
+    <br>
+  Volumn <input type="number" th:field = "*{Volumn}" step="0.01">
+    <br>
+  Duration <input type="time" th:field = "*{Duration}">
+    <br>
+    Url picture: <input type="text" th:field = "*{urlImage}">
   <button type="submit">Continue</button>
 
 </form>

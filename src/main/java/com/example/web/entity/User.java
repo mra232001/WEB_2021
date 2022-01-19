@@ -71,8 +71,8 @@ public class User {
         likedRoutine.remove(routine);
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",
-    cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner")
     public List<Routine> routineList;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "receiver")
