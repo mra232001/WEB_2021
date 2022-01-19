@@ -3,36 +3,47 @@ package com.example.web.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "erset")
-public class RoutineExerciseSet {
-    @EmbeddedId
-    RoutineExerciseKey id = new RoutineExerciseKey();
+@Table(name = "node")
+public class Node {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
 
     @ManyToOne
-    @MapsId("routineid")
     @JoinColumn(name = "routine_id")
     Routine routine;
 
     @ManyToOne
-    @MapsId("exerciseid")
     @JoinColumn(name = "exercise_id")
     Exercise exercise;
 
     int set;
     int rep;
     int weight;
-    ///
     int idex;
 
-    public RoutineExerciseSet() {
-
+    public int getIdex() {
+        return idex;
     }
 
-    public RoutineExerciseKey getId() {
+    public void setIdex(int idex) {
+        this.idex = idex;
+    }
+
+    public Node(int id, Routine routine, Exercise exercise, int set, int rep, int weight) {
+        this.id = id;
+        this.routine = routine;
+        this.exercise = exercise;
+        this.set = set;
+        this.rep = rep;
+        this.weight = weight;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(RoutineExerciseKey id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -76,21 +87,7 @@ public class RoutineExerciseSet {
         this.weight = weight;
     }
 
-    public int getIdex() {
-        return idex;
-    }
+    public Node() {
 
-    public void setIdex(int idex) {
-        this.idex = idex;
-    }
-
-    public RoutineExerciseSet(RoutineExerciseKey id, Routine routine, Exercise exercise, int set, int rep, int weight, int idex) {
-        this.id = id;
-        this.routine = routine;
-        this.exercise = exercise;
-        this.set = set;
-        this.rep = rep;
-        this.weight = weight;
-        this.idex = idex;
     }
 }

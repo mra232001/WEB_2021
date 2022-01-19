@@ -84,32 +84,20 @@ public class RoutineController {
     }
     @PostMapping("/create")
     public String Continue(@ModelAttribute("routine") Routine routine, @RequestParam("id") int id, Model model){
-
-         User user = mainService.findUserbyId(id);
-        /// user dung de luu
-        Routine r = mainService.findRoutinebyId(routine.getId());
-        user.add(r);
-        r.setOwner(user);
-        mainService.routineRepository.save(r);
-        List<Exercise> exerciseList = mainService.listAllExercises();
-        model.addAttribute("exerciseList", exerciseList);
-        RoutineExerciseSet routineExerciseSet = new RoutineExerciseSet();
-        routineExerciseSet.setRoutine(routine);
-        model.addAttribute("routineExerciseSet", routineExerciseSet);
-        model.addAttribute("routine", routine);
+        Node node = new Node();
+        node.setRoutine(routine);
+        model.addAttribute("node", node);
+        model.addAttribute("exerciseList", mainService.listAllExercises());
+        mainService.routineRepository.save(routine);
         return "Authenticated/CreatenewRoutine";
     }
     @PostMapping("/thembaitap")
-    public String thembaitap(@ModelAttribute("routineExerciseSet") RoutineExerciseSet routineExerciseSet, @RequestParam("id") int id, Model model){
+    public String thembaitap(@RequestParam("id") int id, @ModelAttribute("node") Node node){
         Routine routine = mainService.findRoutinebyId(id);
-        Exercise exercise = routineExerciseSet.getExercise();
-        routine.getExerciseList().add(exercise);
-        exercise.getRoutine().add(routine);
-        routineExerciseSet.setExercise(mainService.findExerciseById(routineExerciseSet.getIdex()));
-        mainService.rexset.save(routineExerciseSet);
-        RoutineExerciseSet routineExerciseSet1 = new RoutineExerciseSet();
-        model.addAttribute("routineExerciseSet", routineExerciseSet1);
-        model.addAttribute("routine", routine);
+        Exercise exercise = mainService.exerciseRepository.findById(node.getIdex());
+        node.setExercise(exercise);
+        node.setRoutine(routine);
+        mainService.nodeRepository.save(node);
         return "Authenticated/CreatenewRoutine";
     }
     @GetMapping("/save")

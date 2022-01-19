@@ -72,7 +72,7 @@
     </nav>
   </div>
 
-  <form action="#" th:action="@{/routine/thembaitap/(id=${routine.id})}" th:object="${routineExerciseSet}" method="post">
+  <form action="#" th:action="@{/routine/thembaitap/(id=${node.getRoutine().id})}" th:object="${node}" method="post">
     Exercise:
     <select th:field = "*{idex}">
       <option th:each="i:${exerciseList}" th:value="${i.getId()}" th:text="${i.getExercise_name()}"></option>
@@ -84,7 +84,7 @@
     <br>
     Weight: <input type = "number" th:field = "*{weight}">
     <br>
-    <button type="submit">Add more</button>
+    <button type="submit">Add 1</button>
     <a th:href="@{/main/(user=${session.user.id})}"> Save </a>
 
   </form>

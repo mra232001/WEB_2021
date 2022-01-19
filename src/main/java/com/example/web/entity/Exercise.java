@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -59,17 +60,15 @@ public class Exercise {
     }
 
 
-    public Set<Routine> getRoutine() {
-        return routine;
+    public Exercise(int id, String exercise_name, String description, String equipment, String detailDescription, String urlImage, String primary_muscle) {
+        this.id = id;
+        Exercise_name = exercise_name;
+        Description = description;
+        this.equipment = equipment;
+        DetailDescription = detailDescription;
+        this.urlImage = urlImage;
+        Primary_muscle = primary_muscle;
     }
-
-    public void setRoutine(Set<Routine> routine) {
-        this.routine = routine;
-    }
-
-    @ManyToMany
-    @JoinTable(name = "routine_exercise", joinColumns = @JoinColumn(name = "id_exercise"), inverseJoinColumns = @JoinColumn(name = "id_routine"))
-    private Set<Routine> routine = new HashSet<>();
 
     public int getId() {
         return id;
@@ -109,5 +108,24 @@ public class Exercise {
 
     public void setEquipment(String equipment) {
         this.equipment = equipment;
+    }
+
+    @OneToMany(mappedBy = "exercise")
+    List <Node> node = new ArrayList<>();
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Node> getNode() {
+        return node;
+    }
+
+    public void setNode(List<Node> node) {
+        this.node = node;
+    }
+
+    public void addnode(Node n){
+        node.add(n);
     }
 }

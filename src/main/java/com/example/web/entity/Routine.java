@@ -73,9 +73,6 @@ public class Routine {
     @JoinColumn(name = "id_owner")
     private User owner;
 
-    @ManyToMany(mappedBy = "routine")
-    private Set<Exercise> exerciseList = new HashSet<>();
-
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "routine",
             cascade = CascadeType.ALL)
     public List<Comment> commentList = new ArrayList<>();
@@ -95,21 +92,6 @@ public class Routine {
         comment.setRoutine(this);
     }
 
-    public Set<Exercise> getExerciseList() {
-        return exerciseList;
-    }
-
-    public void setExerciseList(Set<Exercise> exerciseList) {
-        this.exerciseList = exerciseList;
-    }
-
-    public void addExercise(Exercise exercise){
-        if(exerciseList == null){
-            exerciseList = new HashSet<>();
-        }
-        exerciseList.add(exercise);
-
-    }
 
     public void setLikeNumber(int likeNumber) {
         LikeNumber = likeNumber;
@@ -192,7 +174,6 @@ public class Routine {
         this.urlImage = urlImage;
         this.like = like;
         this.owner = owner;
-        this.exerciseList = exerciseList;
         this.commentList = commentList;
     }
 
@@ -201,4 +182,25 @@ public class Routine {
         this.owner = routine.owner;
     }
 
+    @OneToMany(mappedBy = "routine")
+    List <Node> node = new ArrayList<>();
+
+    public List<User> getLike() {
+        return like;
+    }
+
+    public void setLike(List<User> like) {
+        this.like = like;
+    }
+
+    public List<Node> getNode() {
+        return node;
+    }
+
+    public void setNode(List<Node> node) {
+        this.node = node;
+    }
+    public void addnode(Node n){
+        node.add(n);
+    }
 }

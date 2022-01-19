@@ -13,8 +13,6 @@ public class MainService  {
 
     @Autowired
     public UserRepository userRepository;
-    @Autowired
-    public Rexset rexset;
 
     @Autowired
     public RoutineRepository routineRepository;
@@ -24,6 +22,9 @@ public class MainService  {
 
     @Autowired
     public NotificationRepository notificationRepository;
+
+    @Autowired
+    public NodeRepository nodeRepository;
 
     public MainService(){
 
