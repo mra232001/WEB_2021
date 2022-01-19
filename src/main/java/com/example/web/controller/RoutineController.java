@@ -102,6 +102,9 @@ public class RoutineController {
     @PostMapping("/thembaitap")
     public String thembaitap(@ModelAttribute("routineExerciseSet") RoutineExerciseSet routineExerciseSet, @RequestParam("id") int id, Model model){
         Routine routine = mainService.findRoutinebyId(id);
+        Exercise exercise = routineExerciseSet.getExercise();
+        routine.getExerciseList().add(exercise);
+        exercise.getRoutine().add(routine);
         routineExerciseSet.setExercise(mainService.findExerciseById(routineExerciseSet.getIdex()));
         mainService.rexset.save(routineExerciseSet);
         RoutineExerciseSet routineExerciseSet1 = new RoutineExerciseSet();
