@@ -87,9 +87,10 @@ public class RoutineController {
 
          User user = mainService.findUserbyId(id);
         /// user dung de luu
-        user.add(routine);
-        routine.setOwner(user);
-        mainService.routineRepository.save(routine);
+        Routine r = mainService.findRoutinebyId(routine.getId());
+        user.add(r);
+        r.setOwner(user);
+        mainService.routineRepository.save(r);
         List<Exercise> exerciseList = mainService.listAllExercises();
         model.addAttribute("exerciseList", exerciseList);
         RoutineExerciseSet routineExerciseSet = new RoutineExerciseSet();
@@ -101,10 +102,17 @@ public class RoutineController {
     @PostMapping("/thembaitap")
     public String thembaitap(@ModelAttribute("routineExerciseSet") RoutineExerciseSet routineExerciseSet, @RequestParam("id") int id, Model model){
         Routine routine = mainService.findRoutinebyId(id);
+        routineExerciseSet.setExercise(mainService.findExerciseById(routineExerciseSet.getIdex()));
         mainService.rexset.save(routineExerciseSet);
         RoutineExerciseSet routineExerciseSet1 = new RoutineExerciseSet();
         model.addAttribute("routineExerciseSet", routineExerciseSet1);
         model.addAttribute("routine", routine);
         return "Authenticated/CreatenewRoutine";
+    }
+    @GetMapping("/save")
+    public String luu(@RequestParam("id") int id){
+        User user = mainService.findUserbyId(id);
+        mainService.saveUser(user);
+        return "Authenticated/Home_page";
     }
 }

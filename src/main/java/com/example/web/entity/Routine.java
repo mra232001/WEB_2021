@@ -182,6 +182,20 @@ public class Routine {
         CommentNumber = commentNumber;
     }
 
+    public Routine(int id, String name, Time duration, Double volumn, int likeNumber, int commentNumber, String urlImage, List<User> like, User owner, Set<Exercise> exerciseList, List<Comment> commentList) {
+        this.id = id;
+        this.name = name;
+        Duration = duration;
+        Volumn = volumn;
+        LikeNumber = likeNumber;
+        CommentNumber = commentNumber;
+        this.urlImage = urlImage;
+        this.like = like;
+        this.owner = owner;
+        this.exerciseList = exerciseList;
+        this.commentList = commentList;
+    }
+
     public void setObject(Routine routine){
         this.name = routine.name;
         this.owner = routine.owner;
