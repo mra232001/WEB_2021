@@ -100,7 +100,7 @@
             </div>
 
             <div class="uk-button" >
-                <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/profile/configure(id=${session.user.id})}" >Add new routine </a>
+                <a class = "uk-button uk-button-primary" th:unless="${session.user.id} != ${ID}" th:href ="@{/routine/createname(id=${session.user.id})}" >Add new routine </a>
             </div>
 
         </fieldset>

@@ -1,13 +1,7 @@
 package com.example.web.service;
 
-import com.example.web.entity.Exercise;
-import com.example.web.entity.Notification;
-import com.example.web.entity.Routine;
-import com.example.web.entity.User;
-import com.example.web.repository.ExerciseRepository;
-import com.example.web.repository.NotificationRepository;
-import com.example.web.repository.RoutineRepository;
-import com.example.web.repository.UserRepository;
+import com.example.web.entity.*;
+import com.example.web.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +13,8 @@ public class MainService  {
 
     @Autowired
     public UserRepository userRepository;
+    @Autowired
+    public Rexset rexset;
 
     @Autowired
     public RoutineRepository routineRepository;
@@ -126,5 +122,4 @@ public class MainService  {
         notification.getReceiver().addNewNoti(notification);
         notificationRepository.save(notification);
     }
-
 }

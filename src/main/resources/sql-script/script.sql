@@ -1,5 +1,6 @@
 insert into role(name) values ('ROLE_USER'),('ROLE_ADMIN');
 
+
 insert into routine(name, duration, volumn, like_number, comment_number) values ('Home Transformation','00:30:00',1.3231,0,0);
 
 insert into routine(name, duration, volumn,id_owner, like_number, comment_number) values ('Pull up hell','00:30:00',1,1.3231,0,0);
