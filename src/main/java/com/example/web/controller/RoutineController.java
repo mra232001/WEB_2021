@@ -88,6 +88,8 @@ public class RoutineController {
         node.setRoutine(routine);
         model.addAttribute("node", node);
         model.addAttribute("exerciseList", mainService.listAllExercises());
+        User user = mainService.findUserbyId(id);
+        routine.setOwner(user);
         mainService.routineRepository.save(routine);
         return "Authenticated/CreatenewRoutine";
     }

@@ -129,10 +129,10 @@
                         <div class="uk-card-body">
                             <div>
                                 <dl class="uk-description-list">
-                                    <div class="uk-text-bold uk-text-large uk-text-muted">
-                                        <dd>3 sets of Pull Ups</dd>
-                                        <dd>4 sets of Push Ups</dd>
-                                        <dd>5 sets of Chin Ups</dd>
+                                    <div class="uk-text-bold uk-text-large uk-text-muted" >
+                                        <div th:each = "node : ${routine.node}">
+                                            <dd th:text="${node.set} + ' sets of ' + ${node.exercise.exercise_name}"></dd>
+                                        </div>
                                     </div>
                                 </dl>
                             </div>
