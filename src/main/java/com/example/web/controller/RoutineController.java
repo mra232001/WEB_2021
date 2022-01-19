@@ -100,8 +100,9 @@ public class RoutineController {
         node.setExercise(exercise);
         node.setRoutine(routine);
         mainService.nodeRepository.save(node);
-        return "Authenticated/CreatenewRoutine";
+        return "redirect:/routine/create/?id=" + id;
     }
+
     @GetMapping("/save")
     public String luu(@RequestParam("id") int id){
         User user = mainService.findUserbyId(id);
