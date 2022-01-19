@@ -84,7 +84,8 @@ public class RoutineController {
     }
     @PostMapping("/create")
     public String Continue(@ModelAttribute("routine") Routine routine, @RequestParam("id") int id, Model model){
-        User user = mainService.findUserbyId(id);
+
+         User user = mainService.findUserbyId(id);
         /// user dung de luu
         user.add(routine);
         routine.setOwner(user);

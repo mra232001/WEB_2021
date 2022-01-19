@@ -77,9 +77,13 @@
     <select th:field = "*{exercise}">
       <option th:each="i:${exerciseList}" th:value="${i}" th:text="${i.getExercise_name()}"></option>
     </select>
+    <br>
     Set: <input type = "number" th:field = "*{set}">
+    <br>
     Rep: <input type = "number" th:field = "*{rep}">
+    <br>
     Weight: <input type = "number" th:field = "*{weight}">
+    <br>
     <button type="submit">Save</button>
 
   </form>
