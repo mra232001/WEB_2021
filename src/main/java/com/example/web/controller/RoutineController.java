@@ -102,6 +102,7 @@ public class RoutineController {
         mainService.nodeRepository.save(node);
         return "redirect:/routine/create/?id=" + id;
     }
+
     @GetMapping("/save")
     public String luu(@RequestParam("id") int id){
         User user = mainService.findUserbyId(id);
