@@ -72,7 +72,7 @@
     </nav>
   </div>
 
-  <form action="#" th:action="@{/routine/create(id=${session.user.id})}" th:object="${routine}" method="post">
+  <form action="#" th:action="@{/routine/create(id=${routine.getId()})}" th:object="${routine}" method="post">
   Name of routine <input type="text" th:field = "*{name}">
     <br>
   Volumn <input type="number" th:field = "*{Volumn}" step="0.01">

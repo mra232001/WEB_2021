@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -76,31 +77,43 @@ public class RoutineController {
         mainService.saveNewNotification(mainService.findUserbyId(id),3,routine);
         return "redirect:/routine/?id=" +comment.getRoutine().getId()+"&ses=" +id;
     }
+    List <Routine> routineList = new ArrayList<>();
     @GetMapping("/createname")
     public String create_name_for_routine(@RequestParam("id") int id, Model model){
         Routine routine = new Routine();
+        User user = mainService.findUserbyId(id);
+        /// connect time
+        user.getRoutineList().add(routine);
+        routine.setOwner(user);
         model.addAttribute("routine", routine);
         return "Authenticated/RoutineName";
     }
     @PostMapping("/create")
     public String Continue(@ModelAttribute("routine") Routine routine, @RequestParam("id") int id, Model model){
+        /// cung routine cu
+        User user = routine.getOwner();
+        mainService.routineRepository.save(routine);
         Node node = new Node();
-        node.setRoutine(routine);
+        model.addAttribute("routine", routine);
         model.addAttribute("node", node);
         model.addAttribute("exerciseList", mainService.listAllExercises());
-        User user = mainService.findUserbyId(id);
-        routine.setOwner(user);
-        mainService.routineRepository.save(routine);
         return "Authenticated/CreatenewRoutine";
     }
     @PostMapping("/thembaitap")
-    public String thembaitap(@RequestParam("id") int id, @ModelAttribute("node") Node node){
+    public String thembaitap(@RequestParam("id") int id, @ModelAttribute("node") Node node, Model model){
+        /// node chua connect
+        /// field name van con giu
+        /// cung 1 routine
         Routine routine = mainService.findRoutinebyId(id);
         Exercise exercise = mainService.exerciseRepository.findById(node.getIdex());
         node.setExercise(exercise);
         node.setRoutine(routine);
         mainService.nodeRepository.save(node);
-        return "redirect:/routine/create/?id=" + id;
+        Node n = new Node();
+        model.addAttribute("node", n);
+        model.addAttribute("routine", routine);
+        model.addAttribute("exerciseList", mainService.listAllExercises());
+        return "Authenticated/CreatenewRoutine";
     }
 
     @GetMapping("/save")
