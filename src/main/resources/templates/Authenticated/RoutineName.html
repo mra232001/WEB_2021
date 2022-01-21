@@ -52,6 +52,7 @@
         <div class="uk-margin">
           <form class="uk-search uk-search-default uk-form-horizontal" action ="/main/search" >
             <p></p>
+
             <input class="uk-search-input " type="text" value="" name = "input" placeholder="Search">
             <p></p>
             <label><input class="uk-radio" value="Person" name = "Type" type="radio" checked ="checked">Person</label>
@@ -73,11 +74,12 @@
   </div>
 
   <form action="#" th:action="@{/routine/create(id=${routine.getId()})}" th:object="${routine}" method="post">
-  Name of routine <input type="text" th:field = "*{name}">
+   <input type="text" th:field = "*{name}" placeholder="Name of routine">
     <br>
-  Volumn <input type="number" th:field = "*{Volumn}" step="0.01">
+   <input type="number" th:field = "*{Volumn}" step="0.01" placeholder="Volumn">
     <br>
-    Url picture: <input type="text" th:field = "*{urlImage}">
+     <input type="text" th:field = "*{urlImage}" placeholder="Url picture:">
+    <input type = "hidden" th:field = "*{owner}">
   <button type="submit">Continue</button>
 
 </form>

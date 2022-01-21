@@ -27,6 +27,14 @@ public class MainController {
     public String main_page(@RequestParam("user")int id,
                                         Model model){
         User user = mainService.findUserbyId(id);
+        List<Routine> routineList = new ArrayList<>();
+        routineList = user.routineList;
+        for(User user1: user.getFollowing()){
+            for(Routine routine1: user1.getRoutineList()){
+                routineList.add(routine1);
+            }
+        };
+        model.addAttribute("list_routine",routineList);
         model.addAttribute("user",user);
         return "Authenticated/Home_page";
     }

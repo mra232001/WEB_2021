@@ -85,6 +85,7 @@ public class RoutineController {
         /// connect time
         user.getRoutineList().add(routine);
         routine.setOwner(user);
+        System.out.println(user.getId());
         model.addAttribute("routine", routine);
         return "Authenticated/RoutineName";
     }
