@@ -142,10 +142,12 @@
                             <p th:text = "${routine.CommentNumber} + ${' comments'}"></p>
                         </div>
                         <div class="uk-margin-small-left">
-                            <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5"></a>
-                            <a href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: comment ; ratio: 1.5"></a>
-                            <a th:if="${session.user.id} != ${ID}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
-                            <a th:unless="${session.user.id} != ${ID}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: play ; ratio: 1.5"></a>
+                            <a id="heart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:unless="${sesUser.likedRoutine.contains(routine)}"  th:href="@{/routine/likeother(user = ${session.user.id},routine=${routine.id})}" ></a>
+                            <a id="unheart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:if="${sesUser.likedRoutine.contains(routine)}"  th:href="@{/routine/unlikeother(user = ${session.user.id},routine=${routine.id})}" th:style="'color:pink'"></a>
+
+                            <a th:if="${session.user.id} != ${ID}"  th:href="@{/routine/copy}" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                            <a th:unless="${session.user.id} != ${ID}" th:href="@{/routine/configure(id=${routine.id})}" class="uk-icon-button" uk-icon="icon: pencil ; ratio: 1.5" ></a>
+                            <a th:unless="${session.user.id} != ${ID}" th:href="@{/routine/delete(id=${routine.id})}" class="uk-icon-button" uk-icon="icon: trash ; ratio: 1.5" ></a>
                         </div>
                     </a>
                 </div>

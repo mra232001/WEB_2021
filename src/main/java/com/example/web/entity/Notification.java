@@ -23,7 +23,7 @@ public class Notification {
     @JoinColumn(name = "id_routine")
     private Routine routine;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "receiver_id")
     private User receiver;
 

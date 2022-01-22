@@ -6,6 +6,7 @@ import com.example.web.service.RoutineService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,33 @@ public class RoutineController {
         return "Authenticated/SpecificRoutine";
     }
 
+    @GetMapping("/likeother")
+    public String Likeother(@RequestParam("routine") int idRoutine,
+                       @RequestParam("user") int id,
+                       Model model){
+        Routine routine = mainService.findRoutinebyId(idRoutine);
+        User foundUser = mainService.findUserbyId(id);
+        foundUser.like_Routine(routine);
+        routine.addLike(mainService.findUserbyId(id));
+        routineService.addLike(foundUser,routine);
+        mainService.saveNewNotification(foundUser,2,routine);
+        model.addAttribute("routine",routine);
+        return "redirect:/profile/?userId=" + routine.getOwner().getId()+"&ses="+foundUser.getId();
+    }
+
+    @GetMapping("/unlikeother")
+    public String unlikeother(@RequestParam("routine") int idRoutine,
+                         @RequestParam("user") int id,
+                         Model model){
+        Routine routine = mainService.findRoutinebyId(idRoutine);
+        User foundUser = mainService.findUserbyId(id);
+        foundUser.unlike_routine(routine);
+        routine.unLike(foundUser);
+        routineService.unLike(foundUser,routine);
+        model.addAttribute("routine",routine);
+        return "redirect:/profile/?userId=" + routine.getOwner().getId()+"&ses="+foundUser.getId();
+    }
+
     @GetMapping("/like")
     public String Like(@RequestParam("routine") int idRoutine,
                        @RequestParam("user") int id,
@@ -64,6 +92,33 @@ public class RoutineController {
         routineService.unLike(foundUser,routine);
         model.addAttribute("routine",routine);
         return "redirect:/routine/?id=" +routine.getId()+"&ses="+id;
+    }
+
+    @GetMapping("/likehomepage")
+    public String Likehomepage(@RequestParam("routine") int idRoutine,
+                       @RequestParam("user") int id,
+                       Model model){
+        Routine routine = mainService.findRoutinebyId(idRoutine);
+        User foundUser = mainService.findUserbyId(id);
+        foundUser.like_Routine(routine);
+        routine.addLike(mainService.findUserbyId(id));
+        routineService.addLike(foundUser,routine);
+        mainService.saveNewNotification(foundUser,2,routine);
+        model.addAttribute("routine",routine);
+        return "redirect:/main/?user=" +id;
+    }
+
+    @GetMapping("/unlikehomepage")
+    public String unlikehomepage(@RequestParam("routine") int idRoutine,
+                         @RequestParam("user") int id,
+                         Model model){
+        Routine routine = mainService.findRoutinebyId(idRoutine);
+        User foundUser = mainService.findUserbyId(id);
+        foundUser.unlike_routine(routine);
+        routine.unLike(foundUser);
+        routineService.unLike(foundUser,routine);
+        model.addAttribute("routine",routine);
+        return "redirect:/main/?user=" +id;
     }
 
     @PostMapping("/comment")
@@ -117,10 +172,28 @@ public class RoutineController {
         return "Authenticated/CreatenewRoutine";
     }
 
+    @GetMapping("/configure")
+    public String configure(@RequestParam("id") int id, Model model){
+        Routine routine = mainService.findRoutinebyId(id);
+        mainService.routineRepository.save(routine);
+        Node node = new Node();
+        model.addAttribute("routine", routine);
+        model.addAttribute("node", node);
+        model.addAttribute("exerciseList", mainService.listAllExercises());
+        return "Authenticated/CreatenewRoutine";
+    }
+
     @GetMapping("/save")
     public String luu(@RequestParam("id") int id){
         User user = mainService.findUserbyId(id);
         mainService.saveUser(user);
-        return "Authenticated/Home_page";
+        return "redirect:/main/?user=" +id;
+    }
+
+    @GetMapping("delete")
+    public String delete(@RequestParam("id") int id){
+        Routine routine = mainService.findRoutinebyId(id);
+        mainService.deleteRoutine(routine);
+        return "redirect:/profile/?userId=" + routine.getOwner().getId()+"&ses="+routine.getOwner().getId();
     }
 }

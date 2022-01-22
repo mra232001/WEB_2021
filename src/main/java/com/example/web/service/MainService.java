@@ -123,4 +123,8 @@ public class MainService  {
         notification.getReceiver().addNewNoti(notification);
         notificationRepository.save(notification);
     }
+
+    public void deleteRoutine(Routine routine){
+        routineRepository.deleteById(routine.getId());
+    }
 }

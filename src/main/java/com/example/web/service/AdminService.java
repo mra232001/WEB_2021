@@ -15,4 +15,8 @@ public class AdminService {
     public List<User> ListAllUser(){
         return userRepository.findAll();
     }
+
+    public void DeleteUser(User user){
+        userRepository.delete(user);
+    }
 }

@@ -71,19 +71,22 @@
     </nav>
   </div>
 
-  <form action="#" th:action="@{/routine/thembaitap(id=${routine.getId()})}" th:object="${node}" method="post">
-    Exercise:
-    <select th:field = "*{idex}">
+  <form action="#" th:action="@{/routine/thembaitap(id=${routine.getId()})}" th:object="${node}" method="post" class="uk-margin-large">
+    <p> Exercise: </p>
+    <select th:field = "*{idex}" class="uk-select uk-margin-small">
       <option th:each="i:${exerciseList}" th:value="${i.getId()}" th:text="${i.getExercise_name()}"></option>
     </select>
     <br>
-    Set: <input type = "number" th:field = "*{set}">
+    <p> Set: </p>
+    <input type = "number" th:field = "*{set}" placeholder="Set: " class="uk-input uk-margin-small">
     <br>
-    Rep: <input type = "number" th:field = "*{rep}">
+    <p> Rep: </p>
+    <input type = "number" th:field = "*{rep}" placeholder="Rep :" class="uk-input uk-margin-small">
     <br>
-    Weight: <input type = "number" th:field = "*{weight}">
+    <p> Weight: </p>
+    <input type = "number" th:field = "*{weight}" placeholder="Weight: " class="uk-input uk-margin-small">
     <br>
-    <button type="submit">Add more</button>
+    <button type="submit" class = "uk-button-primary uk-button-small">Add more</button>
     <a th:href="@{/main/(user=${session.user.id})}"> Save </a>
 
   </form>
