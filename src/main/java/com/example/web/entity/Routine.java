@@ -54,7 +54,7 @@ public class Routine {
         this.like = likes;
     }
 
-    @ManyToMany(mappedBy = "likedRoutine")
+    @ManyToMany(mappedBy = "likedRoutine", cascade = CascadeType.REMOVE)
     private List<User> like;
 
     public void addLike(User user){
@@ -182,8 +182,11 @@ public class Routine {
         this.owner = routine.owner;
     }
 
-    @OneToMany(mappedBy = "routine")
+    @OneToMany(mappedBy = "routine", cascade = CascadeType.REMOVE)
     List <Node> node = new ArrayList<>();
+
+    @OneToMany(mappedBy = "routine",cascade = CascadeType.REMOVE)
+    List<Notification> notifications = new ArrayList<>();
 
     public List<User> getLike() {
         return like;

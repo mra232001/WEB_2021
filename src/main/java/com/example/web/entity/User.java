@@ -47,7 +47,7 @@ public class User {
     @Column(name = "sex")
     public String sex;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "routine_like",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "routine_id"))
@@ -72,7 +72,7 @@ public class User {
     }
 
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",cascade = CascadeType.REMOVE,orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner")
     public List<Routine> routineList;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "receiver",cascade = CascadeType.REMOVE,orphanRemoval = true)

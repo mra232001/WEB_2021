@@ -109,8 +109,8 @@
                         <div class="uk-margin-small-left">
                             <a id="heart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:unless="${user.likedRoutine.contains(routine) }"  th:href="@{/routine/likehomepage(user = ${session.user.id},routine=${routine.id})}" ></a>
                             <a id="unheart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:if="${user.likedRoutine.contains(routine) }"  th:href="@{/routine/unlikehomepage(user = ${session.user.id},routine=${routine.id})}" th:style="'color:pink'"></a>
-                            <a th:if="${session.user.id} != ${routine.owner.id}"  href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
-                            <a th:unless="${session.user.id} != ${routine.owner.id}" href="https://www.instagram.com/maybenex1ime/" class="uk-icon-button" uk-icon="icon: pencil ; ratio: 1.5"></a>
+                            <a th:if="${session.user.id} != ${session.user.id}"  th:href="@{/routine/copy(routine=${routine.id},ses=${session.user.id})}" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                            <a th:unless="${session.user.id} != ${session.user.id}" th:href="@{/routine/configure(id=${routine.id})}" class="uk-icon-button" uk-icon="icon: pencil ; ratio: 1.5" ></a>
                         </div>
                     </a>
                 </div>

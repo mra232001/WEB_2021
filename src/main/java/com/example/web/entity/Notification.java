@@ -19,7 +19,7 @@ public class Notification {
     @JoinColumn(name = "writer_id")
     private User writer;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_routine")
     private Routine routine;
 

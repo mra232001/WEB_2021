@@ -196,4 +196,33 @@ public class RoutineController {
         mainService.deleteRoutine(routine);
         return "redirect:/profile/?userId=" + routine.getOwner().getId()+"&ses="+routine.getOwner().getId();
     }
+
+    @GetMapping("deleteExercise")
+    public String deleteExercise(@RequestParam("id") int id,
+                                 @RequestParam("node") int idNode){
+        Routine routine = mainService.findRoutinebyId(id);
+        routineService.deleteNode(idNode);
+        return "redirect:/routine/?id=" +routine.getId()+"&ses=" +routine.getOwner().getId();
+    }
+
+    @GetMapping("copy")
+    public String copy(@RequestParam("routine") int id,
+                       @RequestParam("ses") int idSes,
+                       Model model){
+        Routine routine = mainService.findRoutinebyId(id);
+        User user = mainService.findUserbyId(idSes);
+        Routine routine1 = new Routine(routine);
+        routine1.setOwner(user);
+        for(Node node:routine.getNode()){
+            Node node1 = new Node();
+            node1.setRoutine(routine1);
+            node1.setExercise(node.getExercise());
+        }
+        mainService.routineRepository.save(routine1);
+        Node node = new Node();
+        model.addAttribute("routine", routine1);
+        model.addAttribute("node", node);
+        model.addAttribute("exerciseList", mainService.listAllExercises());
+        return "Authenticated/CreatenewRoutine";
+    }
 }

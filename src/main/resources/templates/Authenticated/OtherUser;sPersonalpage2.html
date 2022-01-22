@@ -145,9 +145,10 @@
                             <a id="heart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:unless="${sesUser.likedRoutine.contains(routine)}"  th:href="@{/routine/likeother(user = ${session.user.id},routine=${routine.id})}" ></a>
                             <a id="unheart" class="uk-icon-button" uk-icon="icon: heart ; ratio: 1.5" th:if="${sesUser.likedRoutine.contains(routine)}"  th:href="@{/routine/unlikeother(user = ${session.user.id},routine=${routine.id})}" th:style="'color:pink'"></a>
 
-                            <a th:if="${session.user.id} != ${ID}"  th:href="@{/routine/copy}" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
+                            <a th:if="${session.user.id} != ${ID}"  th:href="@{/routine/copy(routine=${routine.id},ses=${sesUser.id})}" class="uk-icon-button" uk-icon="icon: push ; ratio: 1.5"></a>
                             <a th:unless="${session.user.id} != ${ID}" th:href="@{/routine/configure(id=${routine.id})}" class="uk-icon-button" uk-icon="icon: pencil ; ratio: 1.5" ></a>
-                            <a th:unless="${session.user.id} != ${ID}" th:href="@{/routine/delete(id=${routine.id})}" class="uk-icon-button" uk-icon="icon: trash ; ratio: 1.5" ></a>
+                            <a th:unless="${session.user.id} != ${ID}" th:href="@{/routine/delete(id=${routine.id})}" class="uk-icon-button" uk-icon="icon: trash ; ratio: 1.5"
+                               onclick="if (!(confirm('Are you sure you want to delete this routine?'))) return false"></a>
                         </div>
                     </a>
                 </div>
