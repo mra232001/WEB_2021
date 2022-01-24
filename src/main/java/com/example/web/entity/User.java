@@ -72,10 +72,10 @@ public class User {
     }
 
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "owner",cascade = CascadeType.REMOVE)
     public List<Routine> routineList;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "receiver",cascade = CascadeType.REMOVE,orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "receiver",cascade = CascadeType.REMOVE)
     private List<Notification> notifications;
 
     public List<Notification> getNotifications() {

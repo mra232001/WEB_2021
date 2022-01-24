@@ -35,7 +35,7 @@ public class Routine {
     @Column(name = "comment_number")
     int CommentNumber;
 
-    @Column(name = "image")
+    @Column(name = "image",length = 1000)
     private String urlImage;
 
     public String getUrlImage() {

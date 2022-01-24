@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/user")
-public class LoginController {
+public class  LoginController {
 
     @Autowired
     public LoginService loginService;
